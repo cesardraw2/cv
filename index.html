@@ -3,323 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antônio César - Arquiteto de Soluções AI & Eficiência</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <title>Antônio César - Arquiteto de Soluções</title>
     <style>
-        /* --- ESTILOS GLOBAIS E TRANSIÇÃO --- */
-        body { 
-            font-family: 'Inter', sans-serif; 
-            transition: background-color 0.2s ease, color 0.2s ease; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .tech-code { font-family: 'Roboto Mono', monospace; }
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
-        
-        @media (min-width: 1024px) {
-            .animate-typing { overflow: hidden; border-right: 2px solid #10b981; white-space: nowrap; animation: typing 3.5s steps(30, end), blink .75s step-end infinite; }
-        }
-        @media (max-width: 1023px) {
-            .animate-typing { border-right: none; white-space: normal; word-break: break-word; }
-        }
-        
-        /* --- CONFIGURAÇÕES DE GRIDS DE FUNDO TELA --- */
-        body.dark-mode { background-color: #0f172a; color: #f1f5f9; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px); }
-        body.light-mode { background-color: #f8fafc; color: #1e293b; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px); }
-        
-        /* --- TEMAS CSS --- */
-        body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
-        body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
-        body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
-        body.dark-mode .log-box { background-color: rgba(15, 23, 42, 0.4); border-color: rgba(51, 65, 85, 0.6); color: #94a3b8; }
-        body.dark-mode .tag-tech { background-color: #0f172a; border-color: #334155; color: #cbd5e1; }
-        body.dark-mode h1, body.dark-mode h3 { color: #ffffff; }
-        body.dark-mode .text-muted { color: #94a3b8; }
-        body.dark-mode .text-desc { color: #cbd5e1; }
 
-        body.light-mode .cv-card { background-color: #ffffff; border-color: #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-        body.light-mode header { background-color: #f1f5f9; border-color: #e2e8f0; }
-        body.light-mode .tech-box { background-color: #ffffff; border-color: #e2e8f0; }
-        body.light-mode .log-box { background-color: #f8fafc; border-color: #e2e8f0; color: #475569; }
-        body.light-mode .tag-tech { background-color: #f1f5f9; border-color: #e2e8f0; color: #334155; }
-        body.light-mode h1, body.light-mode h3 { color: #0f172a; }
-        body.light-mode .text-muted { color: #475569; }
-        body.light-mode .text-desc { color: #334155; }
-        body.light-mode .sec-title { color: #0f172a; }
-        body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
-        body.light-mode .timeline-line { border-color: #e2e8f0; }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            font-family: 'Fira Code', 'Monaco', monospace;
+            padding: 20px;
+            min-height: 100vh;
+        }
 
-        /* --- BLINDAGEM ABSOLUTA DE IMPRESSÃO (ESTRUTURA DE TABELA INQUEBRÁVEL) --- */
-        @media print {
-            * { 
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important; 
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid rgba(34, 211, 238, 0.4);
+            color: #22d3ee;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+        }
+
+        .pdf-button {
+            background: #10b981;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        /* Left Column */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 8px;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .profile-tag {
+            color: #22d3ee;
+            font-size: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-tag::before {
+            content: '> ';
+            color: #22d3ee;
+        }
+
+        .profile-name {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f1f5f9;
+            line-height: 1.2;
+        }
+
+        .profile-title {
+            color: #22d3ee;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-title::before {
+            content: '> ';
+        }
+
+        .profile-description {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 8px;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .section-title {
+            color: #22d3ee;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '[01] ';
+            color: #22d3ee;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(34, 211, 238, 0.2);
+            margin-left: 10px;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            border-left: 2px solid rgba(34, 211, 238, 0.3);
+            padding-left: 20px;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .company-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #f1f5f9;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            color: #cbd5e1;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .period {
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .tech-stack {
+            background: rgba(34, 211, 238, 0.1);
+            border-left: 2px solid #22d3ee;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 12px;
+            color: #22d3ee;
+            border-radius: 4px;
+        }
+
+        .description {
+            color: #cbd5e1;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        /* Right Column - Sidebar */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-section {
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .sidebar-title {
+            color: #22d3ee;
+            font-size: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-title::before {
+            content: '// ';
+            color: #22d3ee;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+
+        .contact-label {
+            color: #22d3ee;
+            margin-right: 8px;
+        }
+
+        .contact-link {
+            color: #22d3ee;
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .tag {
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            color: #22d3ee;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .credential-item {
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+
+        .credential-title {
+            color: #22d3ee;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .credential-info {
+            color: #cbd5e1;
+            margin-bottom: 2px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(34, 211, 238, 0.2);
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
             }
-            body { 
-                background: #ffffff !important; 
-                color: #0f172a !important; 
-                padding: 0 !important;
+
+            .profile-name {
+                font-size: 32px;
             }
-            .no-print { display: none !important; }
-            .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; display: block !important; }
-            header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 15px 0 !important; display: block !important; }
-            
-            /* Força comportamento estrutural de Tabela A4 para travar as colunas */
-            .main-grid { 
-                display: table !important; 
-                width: 100% !important;
-                table-layout: fixed !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
             }
-            main { 
-                display: table-cell !important; 
-                width: 72% !important; 
-                padding: 1.2rem !important; 
-                vertical-align: top !important;
+
+            .profile-name {
+                font-size: 24px;
             }
-            aside { 
-                display: table-cell !important; 
-                width: 28% !important; 
-                background-color: #f8fafc !important; 
-                padding: 1.2rem !important; 
-                border-left: 1px solid #cbd5e1 !important;
-                vertical-align: top !important;
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
             }
-            
-            /* Tipografia e controle de quebras de página */
-            h1, .head-name { color: #0f172a !important; font-size: 20pt !important; }
-            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 11.5pt !important; white-space: normal !important; }
-            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #94a3b8 !important; font-size: 9.5pt !important; padding-bottom: 4px !important; margin-bottom: 12px !important; }
-            h3, .comp-title { color: #0f172a !important; font-size: 10pt !important; }
-            p, li, .text-desc, .head-desc, .sub-desc { color: #334155 !important; font-size: 8.5pt !important; line-height: 1.35 !important; }
-            
-            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; padding: 10px !important; }
-            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #1e293b !important; font-size: 7.5pt !important; padding: 3px 6px !important; }
-            .tag-tech { background: #ffffff !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; font-size: 7.5pt !important; display: inline-block !important; margin-bottom: 2px !important; }
-            .timeline-line { border-left-color: #cbd5e1 !important; }
-            .timeline-dot { background: #ffffff !important; border: 2px solid #0f172a !important; }
-            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; padding: 12px !important; }
-            
-            footer { border-top: 1px solid #cbd5e1 !important; color: #475569 !important; font-size: 7.5pt !important; padding-top: 6px !important; display: block !important; }
-            @page { margin: 0.8cm 1cm; size: A4; }
-            .page-break-inside-avoid { page-break-inside: avoid !important; }
         }
     </style>
 </head>
-<body class="dark-mode antialiased min-h-screen py-6 px-4 sm:px-6 lg:px-8">
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="theme-toggle">> set_theme("LIGHT")</div>
+            <div class="pdf-button">sys.print_to_pdf()</div>
+        </div>
 
-    <div class="max-w-5xl mx-auto mb-4 flex justify-between items-center no-print">
-        <button onclick="toggleTheme()" class="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-xl border transition-all duration-300 cursor-pointer bg-slate-900 border-slate-700/50 hover:border-slate-500 text-slate-300 theme-btn shadow-sm select-none" title="Alternar visual da página">
-            <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
-            <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-500 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.243 17.657l.707.707M6.343 6.343l.707.707M12 7a5 5 0 100 10 5 5 0 000-10z" />
-            </svg>
-            <span id="theme-text">Modo Claro</span>
-        </button>
-        
-        <button onclick="window.print()" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-md transition-all duration-300 cursor-pointer select-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <span>Baixar em PDF</span>
-        </button>
-    </div>
-
-    <div class="cv-card max-w-5xl mx-auto rounded-2xl border overflow-hidden print:border-slate-300 print:shadow-none bg-slate-900/40">
-        
-        <header class="relative p-8 sm:p-10 border-b overflow-hidden print:bg-white print:pb-4">
-            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent animate-pulse no-print"></div>
-            
-            <div class="flex flex-col lg:flex-row print:flex-row justify-between items-start gap-6 relative z-10 w-full">
-                <div class="space-y-3 flex-1 min-w-0">
-                    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider no-print">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                        SOLUTIONS ARCHITECT // EFFICIENCY NODE ACTIVE
-                    </div>
-                    <h1 id="dyn-nome" class="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono head-name transition-colors break-words print:text-slate-900">Loading...</h1>
-                    <div class="max-w-full">
-                        <p id="dyn-cargo" class="text-emerald-400 font-mono text-base sm:text-lg font-semibold animate-typing print:text-emerald-700"></p>
-                    </div>
-                    <p id="dyn-perfil" class="text-sm max-w-2xl leading-relaxed text-justify mt-2 head-desc text-muted transition-colors print:text-slate-700"></p>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Profile Section -->
+                <div class="profile-section">
+                    <div class="profile-tag">SOLUTIONS ARCHITECT // EFFICIENCY NODE ACTIVE</div>
+                    <h1 class="profile-name">Antônio César de Jesus Nascimento</h1>
+                    <div class="profile-title">Arquiteto de Soluções, Inteligência Artificial & Eficiência de Processos (BPMN)</div>
+                    <p class="profile-description">
+                        Profissional Sênior especializado em utilizar Inteligência Artificial e sistemas corporativos complexos para otimizar fluxos de trabalho operacionais, eliminar gargalos burocráticos, arquitetar integrações de dados e reduzir os custos organizacionais.
+                    </p>
                 </div>
-                
-                <div class="tech-box tech-code text-xs space-y-2 p-4 rounded-xl border w-full lg:w-auto lg:min-w-[280px] print:min-w-[260px] shrink-0 shadow-inner print:bg-slate-50 print:border-slate-200">
-                    <p class="text-slate-500 font-bold uppercase tracking-wider mb-2 border-b border-slate-700/40 pb-1 no-print">// CONNECTION_INFO</p>
-                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">mail:</span> <a id="dyn-email" href="" class="print:text-slate-800"></a></p>
-                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">phone:</span> <span id="dyn-phone" class="print:text-slate-800"></span></p>
-                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">spec:</span> <span id="dyn-spec" class="print:text-slate-800"></span></p>
-                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">lnk:</span> <a id="dyn-linkedin" href="" target="_blank" class="text-muted hover:text-emerald-400 transition-colors print:text-slate-800"></a></p>
+
+                <!-- Experience Section -->
+                <div class="experience-section">
+                    <div class="section-title">PERFORMANCE_&_OPERATIONS_LOG</div>
+
+                    <!-- FrogDevs -->
+                    <div class="experience-item">
+                        <div class="company-name">FrogDevs</div>
+                        <div class="job-title">Arquiteto de Soluções AI & Líder Técnico de Engenharia</div>
+                        <div class="period">03/2025 - PRESENT</div>
+                        <div class="tech-stack">Foco Operacional: Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.</div>
+                        <p class="description">
+                            Engenharia e arquitetura de ecossistemas inteligentes orientados a Agentes Cognitivos Autônomos. Liderança no desenho de fluxos de automação complexos com n8n Enterprise, integrando LLMs locais via Ollama e LangChain para processamento de linguagem natural e tomadas de decisão inteligentes. Desenvolvimento de ferramentas personalizadas acionadas via chamadas de API (Tool Calling) e estruturação de rotinas de extração, transformação e carga de dados (ETL no Magento).
+                        </p>
+                    </div>
+
+                    <!-- act digital (SICOOB) -->
+                    <div class="experience-item">
+                        <div class="company-name">act digital (SICOOB)</div>
+                        <div class="job-title">Especialista em Desenvolvimento de Sistemas</div>
+                        <div class="period">2024 - 2025</div>
+                        <div class="tech-stack">Stack Focado: Angular 14+, Java, PHP, Docker, Ansible, Modelagem BPMN, Processos ETL, Sistemas de Missão Crítica.</div>
+                        <p class="description">
+                            Atuação especializada na arquitetura e especificação técnica de Sistemas de Missão Crítica corporativos em ecossistema Java e Front-End moderno com Angular 14+. Foco em ambientes bancários regulados de alta complexidade.
+                        </p>
+                    </div>
+
+                    <!-- Consultoria em Soluções -->
+                    <div class="experience-item">
+                        <div class="company-name">Consultoria em Soluções</div>
+                        <div class="job-title">Arquiteto de Soluções Autônomo</div>
+                        <div class="period">2019 - 2025</div>
+                        <div class="tech-stack">Foco Operacional: Consultoria corporativa sob demanda.</div>
+                        <p class="description">
+                            Consultoria dedicada à integração de sistemas legados, infraestrutura em nuvem segura e barramentos de microsserviços customizados para otimização de grandes ecossistemas empresariais.
+                        </p>
+                    </div>
+
+                    <!-- Globalweb Corp (CAIXA) -->
+                    <div class="experience-item">
+                        <div class="company-name">Globalweb Corp (CAIXA)</div>
+                        <div class="job-title">Arquiteto de Soluções Sênior</div>
+                        <div class="period">2023 - 2024</div>
+                        <div class="tech-stack">Foco Operacional: Sistemas SINEB e SIGPD, Java, PHP, DevOps.</div>
+                        <p class="description">
+                            Engenheiro titular responsável pela governança técnica, conformidade e arquitetura de ecossistemas bancários governamentais estratégicos na Caixa Econômica Federal.
+                        </p>
+                    </div>
+
+                    <!-- TIVIT (CAIXA) -->
+                    <div class="experience-item">
+                        <div class="company-name">TIVIT (CAIXA)</div>
+                        <div class="job-title">Arquiteto de Soluções Sênior</div>
+                        <div class="period">2020 - 2022</div>
+                        <div class="tech-stack">Foco Operacional: API-Gateway, Swagger, Docker, Ansible.</div>
+                        <p class="description">
+                            Implementação estrutural de camadas robustas de acesso e abstração de dados (API-Gateway) sob especificações rigorosas Swagger.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </header>
 
-        <div class="main-grid grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30 print:divide-slate-200">
-            
-            <main class="p-6 sm:p-8 print:p-6 space-y-6 bg-transparent print:bg-white">
-                <section>
-                    <h2 id="title-experiencias" class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors print:text-slate-900">
-                        </h2>
-                    <div id="container-experiencias" class="space-y-6 relative border-l border-slate-700/60 ml-2 timeline-line print:border-slate-300">
-                        </div>
-                    
-                    <div class="mt-6 pt-6 border-t border-slate-700/30 print:border-slate-200">
-                        <div id="container-arquivados" class="log-box border rounded-xl p-5 space-y-4 print:bg-slate-50 print:border-slate-200">
-                            </div>
+            <!-- Right Column - Sidebar -->
+            <div class="right-column">
+                <!-- Connection Info -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">CONNECTION_INFO</div>
+                    <div class="contact-item">
+                        <span class="contact-label">mail:</span>
+                        <a href="mailto:cesardraw@gmail.com" class="contact-link">cesardraw@gmail.com</a>
                     </div>
-                </section>
-            </main>
-            
-            <aside class="p-6 sm:p-8 print:p-6 space-y-6 bg-slate-950/10 print:bg-slate-50/50 side-panel">
-                <section>
-                    <h2 id="title-competencias" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
-                        </h2>
-                    <div id="container-competencias" class="flex flex-wrap gap-1.5">
-                        </div>
-                </section>
-
-                <section>
-                    <h2 id="title-credenciais" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
-                        </h2>
-                    <div class="tag-tech p-3 border rounded-xl shadow-inner print:bg-white print:border-slate-200">
-                        <p class="text-xs font-bold text-emerald-400 tech-code print:text-emerald-700">Zend Certified Engineer</p>
-                        <p class="text-[10px] text-slate-500 font-mono mt-0.5">ID: ZEND007837</p>
+                    <div class="contact-item">
+                        <span class="contact-label">phone:</span>
+                        <span>+55 61 98172-6967</span>
                     </div>
-                </section>
-
-                <section>
-                    <h2 id="title-academico" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
-                        </h2>
-                    <div class="space-y-3 text-xs">
-                        <div>
-                            <p class="font-bold sub-text print:text-slate-900">Análise e Desenvolvimento de Sistemas</p>
-                            <p class="text-slate-500 tech-code">Cruzeiro do Sul | 2018</p>
-                        </div>
-                        <div>
-                            <p class="font-bold sub-text print:text-slate-900">Desenvolvimento de Jogos Digitais</p>
-                            <p class="text-slate-500 tech-code">Fatep | 2007</p>
-                        </div>
+                    <div class="contact-item">
+                        <span class="contact-label">spec:</span>
+                        <span>(Remoto)</span>
                     </div>
-                </section>
+                    <div class="contact-item">
+                        <span class="contact-label">lnk:</span>
+                        <a href="https://www.linkedin.com/in/antônio-césar-draw-192a4b38" class="contact-link">antônio-césar-draw-192a4b38</a>
+                    </div>
+                </div>
 
-                <section>
-                    <h2 id="title-sistema" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
-                        </h2>
-                    <ul class="text-[11px] space-y-1.5 sys-info-list text-muted print:text-slate-700">
-                        <li><strong class="sub-text font-semibold print:text-slate-900">Nacionalidade:</strong> Brasileira</li>
-                        <li><strong class="sub-text font-semibold print:text-slate-900">Idioma Principal:</strong> Português (Nativo)</li>
-                        <li><strong class="sub-text font-semibold print:text-slate-900">Inglês Corporativo:</strong> Fluência Profissional</li>
-                    </ul>
-                </section>
-            </aside>
+                <!-- Efficiency Matrix -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">EFFICIENCY_MATRIX</div>
+                    <div class="tag-list">
+                        <span class="tag">PROCESSOS ETL (MAGENTO)</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">ORQUESTRAÇÃO AI (n8n)</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">AGENTES COGNITIVOS / LLMs</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">ENGENHARIA DE PROCESSOS (BPMN)</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">SISTEMAS DE MISSÃO CRÍTICA</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">CHAMADA DE SVD / TOOL CALLING</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">INTEGRAÇÃO ERPs / PLATAFORMAS</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">ANGULAR 14+ / TYPESCRIPT</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">PYTHON SPRING BOOT / GOLANG</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">PHP (DOCTRINE) / JAVA</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">SHELLSCRIPT / JAVASCRIPT</span>
+                    </div>
+                    <div class="tag-list">
+                        <span class="tag">INDICADORES GERENCIAIS (KPIs)</span>
+                    </div>
+                </div>
+
+                <!-- Credentials -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">CREDENTIALS</div>
+                    <div class="credential-item">
+                        <div class="credential-title">Zend Certified Engineer</div>
+                        <div class="credential-info">ID: ZEND007837</div>
+                    </div>
+                </div>
+
+                <!-- Academic -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">ACADEMIC_LOG</div>
+                    <div class="credential-item">
+                        <div class="credential-title">Análise e Desenvolvimento de Sistemas</div>
+                        <div class="credential-info">Cruzeiro do Sul | 2018</div>
+                    </div>
+                    <div class="credential-item">
+                        <div class="credential-title">Desenvolvimento de Jogos Digitais</div>
+                        <div class="credential-info">Fatep | 2007</div>
+                    </div>
+                </div>
+
+                <!-- System Info -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">SYSTEM_INFO</div>
+                    <div class="contact-item">
+                        <span class="contact-label">Nacionalidade:</span>
+                        <span>Brasileira</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Idioma Principal:</span>
+                        <span>Português (Nativo)</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Inglês Corporativo:</span>
+                        <span>Fluência Profissional</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <footer class="tech-code text-[10px] text-center py-3 bg-slate-950/20 border-t border-slate-800/40 text-slate-500 flex justify-between px-8 print:bg-white print:border-slate-200 print:text-slate-500">
-            <span id="dyn-versao"></span>
-            <span>Generated: May 2026 // State: Validated</span>
-        </footer>
+
+        <!-- Footer -->
+        <div class="footer">
+            Generated: May 2026 // State: Validated
+        </div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            fetch('./dados.json')
-                .then(response => {
-                    if (!response.ok) throw new Error("Erro ao ler dados.json");
-                    return response.json();
-                })
-                .then(data => renderizarCurriculo(data))
-                .catch(err => console.error("Erro na carga:", err));
-        });
-
-        function renderizarCurriculo(data) {
-            document.getElementById("dyn-nome").innerText = data.nome || "";
-            document.getElementById("dyn-cargo").innerText = data.cargo ? `> ${data.cargo}_` : "";
-            document.getElementById("dyn-perfil").innerText = data.perfil_resumo || "";
-            document.getElementById("dyn-versao").innerText = data.meta_versão || "v4.2.6_production";
-            
-            if (data.secoes_titulo) {
-                document.getElementById("title-experiencias").innerText = data.secoes_titulo.experiencias || "";
-                document.getElementById("title-competencias").innerText = data.secoes_titulo.competencias || "";
-                document.getElementById("title-credenciais").innerText = data.secoes_titulo.credenciais || "";
-                document.getElementById("title-academico").innerText = data.secoes_titulo.academico || "";
-                document.getElementById("title-sistema").innerText = data.secoes_titulo.sistema || "";
-            }
-            
-            document.getElementById("dyn-email").innerText = data.contatos?.email || "";
-            document.getElementById("dyn-email").href = data.contatos?.email ? `mailto:${data.contatos.email}` : "#";
-            document.getElementById("dyn-phone").innerText = data.contatos?.telefone || "";
-            document.getElementById("dyn-spec").innerText = data.contatos?.modalidade || "";
-            document.getElementById("dyn-linkedin").innerText = data.contatos?.linkedin_label || "";
-            document.getElementById("dyn-linkedin").href = data.contatos?.linkedin_url || "#";
-
-            const expContainer = document.getElementById("container-experiencias");
-            if (data.experiencias) {
-                expContainer.innerHTML = data.experiencias.map(exp => {
-                    const tagBruta = exp.tag_tech || exp.tag_linha || exp.tag_linea || "";
-                    const partesTag = tagBruta.includes(':') ? tagBruta.split(':') : ["Foco Operacional", tagBruta];
-                    
-                    return `
-                        <div class="relative pl-6 group page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot print:border-slate-900 print:bg-slate-300"></div>
-                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
-                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300 print:text-slate-900">${exp.empresa || ""}</h3>
-                                <span class="tech-code text-[11px] text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 time-badge print:border-slate-300 print:text-slate-700 print:bg-slate-100">${exp.periodo || ""}</span>
-                            </div>
-                            <p class="text-xs font-semibold role-title mb-2 print:text-slate-800">${exp.cargo_ocupado || ""}</p>
-                            <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
-                                <strong>${partesTag[0].trim()}:</strong> ${partesTag[1].trim()}
-                            </p>
-                            <p class="text-xs text-justify text-desc transition-colors">${exp.descricao || ""}</p>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            const arqContainer = document.getElementById("container-arquivados");
-            if (data.arquivados) {
-                const subHeaderTitle = data.secoes_titulo?.arquivados_header || "// ARCHIVED_LOGS";
-                const headerHtml = `<h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-3 print:text-slate-900">${subHeaderTitle}</h4>`;
-                const listHtml = data.arquivados.map(arq => `
-                    <div class="border-b border-slate-700/30 print:border-slate-200 pb-3 mb-3 last:border-none last:pb-0 last:mb-0 page-break-inside-avoid">
-                        <p class="font-bold sub-text print:text-slate-900">${arq.empresa || ""} <span class="text-slate-500 font-normal">| ${arq.info || ""}</span></p>
-                        <p class="text-xs mt-1 font-mono text-emerald-600/80 print:text-emerald-700">Stack: ${arq.stack || ""}</p>
-                        <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">${arq.desc || ""}</p>
-                    </div>
-                `).join('');
-                arqContainer.innerHTML = headerHtml + listHtml;
-            }
-
-            const compContainer = document.getElementById("container-competencias");
-            if (data.competencias) {
-                compContainer.innerHTML = data.competencias.map(comp => `
-                    <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium print:bg-white print:border-slate-300 print:text-slate-800">${comp}</span>
-                `).join('');
-            }
-        }
-
-        function toggleTheme() {
-            const body = document.body;
-            const text = document.getElementById('theme-text');
-            const iconDark = document.getElementById('theme-icon-dark');
-            const iconLight = document.getElementById('theme-icon-light');
-            
-            if (body.classList.contains('dark-mode')) {
-                body.classList.remove('dark-mode');
-                body.classList.add('light-mode');
-                text.innerText = 'Modo Escuro';
-                iconDark.classList.add('hidden');
-                iconLight.classList.remove('hidden');
-            } else {
-                body.classList.remove('light-mode');
-                body.classList.add('dark-mode');
-                text.innerText = 'Modo Claro';
-                iconLight.classList.add('hidden');
-                iconDark.classList.remove('hidden');
-            }
-        }
+        // Carregar dados do arquivo JSON (opcional)
+        fetch('dados.json')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dados carregados:', data);
+            })
+            .catch(error => console.log('Dados não carregados, usando valores padrão'));
     </script>
 </body>
 </html>
