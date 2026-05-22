@@ -30,7 +30,7 @@
         body.dark-mode { background-color: #0f172a; color: #f1f5f9; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px); }
         body.light-mode { background-color: #f8fafc; color: #1e293b; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px); }
         
-        /* --- DINÂMICA DE TEMAS CSS --- */
+        /* --- TEMAS CSS --- */
         body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
         body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
         body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
@@ -52,36 +52,32 @@
         body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
         body.light-mode .timeline-line { border-color: #e2e8f0; }
 
-        /* --- CONTROLE E PREVENÇÃO DE QUEBRA E ENCAIXE DE IMPRESSÃO --- */
+        /* --- REGRAS ABSOLUTAS DE IMPRESSÃO (ESTABILIZAÇÃO DO TAILWIND 4) --- */
         @media print {
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            body { background: #ffffff !important; color: #0f172a !important; padding: 0 !important; }
+            * { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+            body { 
+                background: #ffffff !important; 
+                color: #0f172a !important; 
+                padding: 0 !important;
+            }
             .no-print { display: none !important; }
             
-            /* Preservar o Grid de 3 colunas original da página no papel */
-            .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; display: block !important; }
-            .main-grid { display: grid !important; grid-template-cols: repeat(3, minmax(0, 1fr)) !important; }
-            main { grid-column: span 2 / span 2 !important; p: 1.5rem !important; }
-            aside { grid-column: span 1 / span 1 !important; background-color: #f8fafc !important; p: 1.5rem !important; border-left: 1px solid #e2e8f0 !important; }
+            /* Calibragem de tipografia para evitar estouro em 2 páginas */
+            h1 { font-size: 20pt !important; }
+            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 12pt !important; white-space: normal !important; }
+            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #94a3b8 !important; font-size: 9.5pt !important; }
+            h3 { color: #0f172a !important; font-size: 10.5pt !important; }
+            p, li, .text-desc, .head-desc, .sub-desc { color: #334155 !important; font-size: 8.5pt !important; line-height: 1.35 !important; }
             
-            header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 15px 0 !important; }
-            h1, .head-name { color: #0f172a !important; font-size: 22pt !important; }
-            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 13pt !important; white-space: normal !important; }
-            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #cbd5e1 !important; margin-bottom: 12px !important; font-size: 10pt !important; }
-            h3, .comp-title { color: #0f172a !important; font-size: 11pt !important; }
-            p, li, .text-desc, .head-desc, .sub-desc { color: #334155 !important; font-size: 9pt !important; line-height: 1.4 !important; }
-            .text-muted { color: #475569 !important; }
+            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #1e293b !important; font-size: 8pt !important; }
+            .tag-tech { background: #ffffff !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; font-size: 7.5pt !important; }
+            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; }
             
-            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; padding: 10px !important; }
-            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #334155 !important; padding: 3px 6px !important; font-size: 8.5pt !important; }
-            .tag-tech { background: #ffffff !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; padding: 2px 4px !important; font-size: 8pt !important; }
-            .timeline-line { border-left-color: #cbd5e1 !important; }
-            .timeline-dot { background: #ffffff !important; border: 2px solid #0f172a !important; }
-            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; padding: 12px !important; }
-            
-            footer { border-top: 1px solid #cbd5e1 !important; color: #475569 !important; font-size: 8pt !important; padding-top: 8px !important; }
-            @page { margin: 1cm 1.2cm; size: A4; }
-            .page-break-inside-avoid { page-break-inside: avoid; }
+            @page { margin: 0.8cm 1.1cm; size: A4; }
+            .page-break-inside-avoid { page-break-inside: avoid !important; }
         }
     </style>
 </head>
@@ -96,93 +92,95 @@
         </button>
     </div>
 
-    <div class="cv-card max-w-5xl mx-auto rounded-2xl border overflow-hidden">
+    <div class="cv-card max-w-5xl mx-auto rounded-2xl border overflow-hidden print:border-slate-300 print:shadow-none bg-slate-900/40">
         
-        <header class="relative p-8 sm:p-10 border-b overflow-hidden">
-            <div class="flex flex-col lg:flex-row justify-between items-start gap-6 relative z-10 w-full">
+        <header class="relative p-8 sm:p-10 border-b overflow-hidden print:bg-white print:pb-4">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent animate-pulse no-print"></div>
+            
+            <div class="flex flex-col lg:flex-row print:flex-row justify-between items-start gap-6 relative z-10 w-full">
                 <div class="space-y-3 flex-1 min-w-0">
                     <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider no-print">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
                         SOLUTIONS ARCHITECT // EFFICIENCY NODE ACTIVE
                     </div>
-                    <h1 id="dyn-nome" class="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono head-name transition-colors break-words">Loading...</h1>
+                    <h1 id="dyn-nome" class="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono head-name transition-colors break-words print:text-slate-900">Loading...</h1>
                     <div class="max-w-full">
-                        <p id="dyn-cargo" class="text-emerald-400 font-mono text-base sm:text-lg font-semibold animate-typing"></p>
+                        <p id="dyn-cargo" class="text-emerald-400 font-mono text-base sm:text-lg font-semibold animate-typing print:text-emerald-700"></p>
                     </div>
-                    <p id="dyn-perfil" class="text-sm max-w-2xl leading-relaxed text-justify mt-2 head-desc text-muted transition-colors"></p>
+                    <p id="dyn-perfil" class="text-sm max-w-2xl leading-relaxed text-justify mt-2 head-desc text-muted transition-colors print:text-slate-700"></p>
                 </div>
                 
-                <div class="tech-box tech-code text-xs space-y-2 p-4 rounded-xl border w-full lg:w-auto lg:min-w-[280px] shrink-0 shadow-inner">
+                <div class="tech-box tech-code text-xs space-y-2 p-4 rounded-xl border w-full lg:w-auto lg:min-w-[280px] print:min-w-[260px] shrink-0 shadow-inner print:bg-slate-50 print:border-slate-200">
                     <p class="text-slate-500 font-bold uppercase tracking-wider mb-2 border-b border-slate-700/40 pb-1 no-print">// CONNECTION_INFO</p>
-                    <p><span class="text-emerald-500 font-semibold">mail:</span> <a id="dyn-email" href=""></a></p>
-                    <p><span class="text-emerald-500 font-semibold">phone:</span> <span id="dyn-phone"></span></p>
-                    <p><span class="text-emerald-500 font-semibold">spec:</span> <span id="dyn-spec"></span></p>
-                    <p><span class="text-emerald-500 font-semibold">lnk:</span> <a id="dyn-linkedin" href="" target="_blank" class="text-muted hover:text-emerald-400 transition-colors"></a></p>
+                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">mail:</span> <a id="dyn-email" href="" class="print:text-slate-800"></a></p>
+                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">phone:</span> <span id="dyn-phone" class="print:text-slate-800"></span></p>
+                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">spec:</span> <span id="dyn-spec" class="print:text-slate-800"></span></p>
+                    <p><span class="text-emerald-500 font-semibold print:text-emerald-700">lnk:</span> <a id="dyn-linkedin" href="" target="_blank" class="text-muted hover:text-emerald-400 transition-colors print:text-slate-800"></a></p>
                 </div>
             </div>
         </header>
 
-        <div class="main-grid grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30">
+        <div class="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30 print:divide-slate-200">
             
-            <main class="lg:col-span-2 p-6 sm:p-8 space-y-6">
+            <main class="lg:col-span-2 print:col-span-2 p-6 sm:p-8 print:p-6 space-y-6 bg-transparent print:bg-white">
                 <section>
-                    <h2 id="title-experiencias" class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors">
+                    <h2 id="title-experiencias" class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors print:text-slate-900">
                         </h2>
-                    <div id="container-experiencias" class="space-y-6 relative border-l border-slate-700/60 ml-2 timeline-line">
+                    <div id="container-experiencias" class="space-y-6 relative border-l border-slate-700/60 ml-2 timeline-line print:border-slate-300">
                         </div>
                     
-                    <div class="mt-6 pt-6 border-t border-slate-700/30">
-                        <div id="container-arquivados" class="log-box border rounded-xl p-5 space-y-4">
+                    <div class="mt-6 pt-6 border-t border-slate-700/30 print:border-slate-200">
+                        <div id="container-arquivados" class="log-box border rounded-xl p-5 space-y-4 print:bg-slate-50 print:border-slate-200">
                             </div>
                     </div>
                 </section>
             </main>
             
-            <aside class="p-6 sm:p-8 space-y-6 bg-slate-950/10 side-panel">
+            <aside class="p-6 sm:p-8 print:p-6 space-y-6 bg-slate-950/10 print:bg-slate-50/50 side-panel print:col-span-1">
                 <section>
-                    <h2 id="title-competencias" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                    <h2 id="title-competencias" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
                         </h2>
                     <div id="container-competencias" class="flex flex-wrap gap-1.5">
                         </div>
                 </section>
 
                 <section>
-                    <h2 id="title-credenciais" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                    <h2 id="title-credenciais" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
                         </h2>
-                    <div class="tag-tech p-3 border rounded-xl shadow-inner">
-                        <p class="text-xs font-bold text-emerald-400 tech-code">Zend Certified Engineer</p>
+                    <div class="tag-tech p-3 border rounded-xl shadow-inner print:bg-white print:border-slate-200">
+                        <p class="text-xs font-bold text-emerald-400 tech-code print:text-emerald-700">Zend Certified Engineer</p>
                         <p class="text-[10px] text-slate-500 font-mono mt-0.5">ID: ZEND007837</p>
                     </div>
                 </section>
 
                 <section>
-                    <h2 id="title-academico" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                    <h2 id="title-academico" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
                         </h2>
                     <div class="space-y-3 text-xs">
                         <div>
-                            <p class="font-bold sub-text">Análise e Desenvolvimento de Sistemas</p>
+                            <p class="font-bold sub-text print:text-slate-900">Análise e Desenvolvimento de Sistemas</p>
                             <p class="text-slate-500 tech-code">Cruzeiro do Sul | 2018</p>
                         </div>
                         <div>
-                            <p class="font-bold sub-text">Desenvolvimento de Jogos Digitais</p>
+                            <p class="font-bold sub-text print:text-slate-900">Desenvolvimento de Jogos Digitais</p>
                             <p class="text-slate-500 tech-code">Fatep | 2007</p>
                         </div>
                     </div>
                 </section>
 
                 <section>
-                    <h2 id="title-sistema" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                    <h2 id="title-sistema" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
                         </h2>
-                    <ul class="text-[11px] space-y-1.5 sys-info-list text-muted">
-                        <li><strong class="sub-text font-semibold">Nacionalidade:</strong> Brasileira</li>
-                        <li><strong class="sub-text font-semibold">Idioma Principal:</strong> Português (Nativo)</li>
-                        <li><strong class="sub-text font-semibold">Inglês Corporativo:</strong> Fluência Profissional</li>
+                    <ul class="text-[11px] space-y-1.5 sys-info-list text-muted print:text-slate-700">
+                        <li><strong class="sub-text font-semibold print:text-slate-900">Nacionalidade:</strong> Brasileira</li>
+                        <li><strong class="sub-text font-semibold print:text-slate-900">Idioma Principal:</strong> Português (Nativo)</li>
+                        <li><strong class="sub-text font-semibold print:text-slate-900">Inglês Corporativo:</strong> Fluência Profissional</li>
                     </ul>
                 </section>
             </aside>
         </div>
         
-        <footer class="tech-code text-[10px] text-center py-3 bg-slate-950/20 border-t border-slate-800/40 text-slate-500 flex justify-between px-8">
+        <footer class="tech-code text-[10px] text-center py-3 bg-slate-950/20 border-t border-slate-800/40 text-slate-500 flex justify-between px-8 print:bg-white print:border-slate-200 print:text-slate-500">
             <span id="dyn-versao"></span>
             <span>Generated: May 2026 // State: Validated</span>
         </footer>
@@ -200,11 +198,11 @@
         });
 
         function renderizarCurriculo(data) {
-            // Textos Estruturais Principais
+            // Textos Principais
             document.getElementById("dyn-nome").innerText = data.nome || "";
             document.getElementById("dyn-cargo").innerText = data.cargo ? `> ${data.cargo}_` : "";
             document.getElementById("dyn-perfil").innerText = data.perfil_resumo || "";
-            document.getElementById("dyn-versao").innerText = data.meta_versão || "// debug_mode_active";
+            document.getElementById("dyn-versao").innerText = data.meta_versão || "// debug_mode";
             
             // Injeção de Títulos Dinâmicos do JSON
             if (data.secoes_titulo) {
@@ -232,12 +230,12 @@
                     
                     return `
                         <div class="relative pl-6 group page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot print:border-slate-900 print:bg-slate-300"></div>
                             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
-                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">${exp.empresa || ""}</h3>
-                                <span class="tech-code text-[11px] text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 time-badge">${exp.periodo || ""}</span>
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300 print:text-slate-900">${exp.empresa || ""}</h3>
+                                <span class="tech-code text-[11px] text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 time-badge print:border-slate-300 print:text-slate-700 print:bg-slate-100">${exp.periodo || ""}</span>
                             </div>
-                            <p class="text-xs font-semibold role-title mb-2">${exp.cargo_ocupado || ""}</p>
+                            <p class="text-xs font-semibold role-title mb-2 print:text-slate-800">${exp.cargo_ocupado || ""}</p>
                             <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
                                 <strong>${partesTag[0].trim()}:</strong> ${partesTag[1].trim()}
                             </p>
@@ -251,11 +249,11 @@
             const arqContainer = document.getElementById("container-arquivados");
             if (data.arquivados) {
                 const subHeaderTitle = data.secoes_titulo?.arquivados_header || "// ARCHIVED_LOGS";
-                const headerHtml = `<h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-3">${subHeaderTitle}</h4>`;
+                const headerHtml = `<h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-3 print:text-slate-900">${subHeaderTitle}</h4>`;
                 const listHtml = data.arquivados.map(arq => `
-                    <div class="border-b border-slate-700/30 pb-3 mb-3 last:border-none last:pb-0 last:mb-0">
-                        <p class="font-bold sub-text">${arq.empresa || ""} <span class="text-slate-500 font-normal">| ${arq.info || ""}</span></p>
-                        <p class="text-xs mt-1 font-mono text-emerald-600/80">Stack: ${arq.stack || ""}</p>
+                    <div class="border-b border-slate-700/30 print:border-slate-200 pb-3 mb-3 last:border-none last:pb-0 last:mb-0 page-break-inside-avoid">
+                        <p class="font-bold sub-text print:text-slate-900">${arq.empresa || ""} <span class="text-slate-500 font-normal">| ${arq.info || ""}</span></p>
+                        <p class="text-xs mt-1 font-mono text-emerald-600/80 print:text-emerald-700">Stack: ${arq.stack || ""}</p>
                         <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">${arq.desc || ""}</p>
                     </div>
                 `).join('');
@@ -266,7 +264,7 @@
             const compContainer = document.getElementById("container-competencias");
             if (data.competencias) {
                 compContainer.innerHTML = data.competencias.map(comp => `
-                    <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">${comp}</span>
+                    <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium print:bg-white print:border-slate-300 print:text-slate-800">${comp}</span>
                 `).join('');
             }
         }
