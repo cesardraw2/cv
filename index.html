@@ -3,304 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currículo - Cesar Draw</title>
+    <title>Cesar Draw - Arquiteto de Soluções AI</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,350;8..144,400;8..144,600;8..144,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Inter', 'Roboto Flex', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        /* --- ESTILOS GLOBAIS E TRANSIÇÃO --- */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: background-color 0.2s ease, color 0.2s ease; 
         }
+        .tech-code { font-family: 'Roboto Mono', monospace; }
+        
+        /* --- ANIMAÇÃO DE DIGITAÇÃO --- */
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
+        .animate-typing {
+            overflow: hidden;
+            border-right: 2px solid #10b981;
+            white-space: nowrap;
+            animation: typing 3.5s steps(30, end), blink .75s step-end infinite;
+        }
+
+        /* --- CONFIGURAÇÕES DE GRIDS DE FUNDO (TELA) --- */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #f1f5f9;
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px);
+        }
+        body.light-mode {
+            background-color: #f8fafc;
+            color: #1e293b;
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+        }
+
+        /* --- DINÂMICA DE CORES VIA CSS (TELA) --- */
+        /* Tema Escuro (Padrão) */
+        body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
+        body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
+        body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
+        body.dark-mode .log-box { background-color: rgba(15, 23, 42, 0.4); border-color: rgba(51, 65, 85, 0.6); color: #94a3b8; }
+        body.dark-mode .tag-tech { background-color: #0f172a; border-color: #334155; color: #cbd5e1; }
+        body.dark-mode h1 { color: #ffffff; }
+        body.dark-mode h3 { color: #ffffff; }
+        body.dark-mode .text-muted { color: #94a3b8; }
+        body.dark-mode .text-desc { color: #cbd5e1; }
+
+        /* Tema Claro (Invertido dinamicamente) */
+        body.light-mode .cv-card { background-color: #ffffff; border-color: #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        body.light-mode header { background-color: #f1f5f9; border-color: #e2e8f0; }
+        body.light-mode .tech-box { background-color: #ffffff; border-color: #e2e8f0; box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02); }
+        body.light-mode .log-box { background-color: #f8fafc; border-color: #e2e8f0; color: #475569; }
+        body.light-mode .tag-tech { background-color: #f1f5f9; border-color: #e2e8f0; color: #334155; }
+        body.light-mode h1 { color: #0f172a; }
+        body.light-mode h3 { color: #0f172a; }
+        body.light-mode .text-muted { color: #475569; }
+        body.light-mode .text-desc { color: #334155; }
+        body.light-mode .sec-title { color: #0f172a; }
+        body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
+        body.light-mode .timeline-line { border-color: #e2e8f0; }
+        body.light-mode details { background-color: #f8fafc; border-color: #e2e8f0; }
+
+        /* --- REGRAS ABSOLUTAS DE IMPRESSÃO (FORÇA TEMA LIGHT NO PDF) --- */
         @media print {
-            body { background-color: #fff; color: #000; }
-            .no-print { display: none; }
-            .print-shadow-none { box-shadow: none !important; }
-            .print-p-0 { padding: 0 !important; }
-            @page { margin: 1cm 1.2cm; size: A4; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            body { 
+                background: #ffffff !important; 
+                color: #0f172a !important; 
+            }
+            
+            .no-print { display: none !important; }
+            
+            .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
+            header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 20px 0 !important; }
+            
+            h1, .head-name { color: #0f172a !important; font-size: 24pt !important; }
+            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 14pt !important; }
+            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #cbd5e1 !important; margin-bottom: 15px !important; }
+            h3, .comp-title { color: #0f172a !important; font-size: 12pt !important; }
+            p, li, .text-desc, .head-desc { color: #334155 !important; font-size: 10pt !important; }
+            .text-muted { color: #475569 !important; }
+            
+            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; color: #0f172a !important; }
+            .tech-box p, .tech-box span { color: #1e293b !important; }
+            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #334155 !important; padding: 4px 8px !important; }
+            .tag-tech { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; }
+            
+            .timeline-line { border-left-color: #cbd5e1 !important; }
+            .timeline-dot { background: #ffffff !important; border: 2px solid #0f172a !important; }
+            
+            .archive-section details { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; }
+            .archive-section p { color: #334155 !important; }
+            
+            @page { margin: 1.2cm; size: A4; }
             .page-break-inside-avoid { page-break-inside: avoid; }
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased min-h-screen sm:py-10 px-4 sm:px-6 lg:px-8">
+<body class="dark-mode antialiased min-h-screen py-6 px-4 sm:px-6 lg:px-8 selection:bg-emerald-500 selection:text-black">
 
-    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden print-shadow-none border border-gray-200 print-p-0">
+    <div class="max-w-5xl mx-auto mb-4 flex justify-between items-center no-print">
+        <button onclick="toggleTheme()" class="tech-code text-xs font-semibold px-4 py-2 rounded-xl border transition-all duration-300 cursor-pointer bg-slate-900 text-emerald-400 border-emerald-500/20 hover:border-emerald-400 theme-btn">
+            <span>&gt; set_theme("LIGHT")</span>
+        </button>
         
-        <header class="bg-slate-950 text-white p-8 sm:p-10 border-b-4 border-emerald-500">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                <div>
-                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">Antônio César de Jesus Nascimento</h1>
-                    <p class="text-emerald-400 font-semibold text-lg mt-1 tracking-wide">Especialista em Desenvolvimento & Arquiteto de Sistemas/Soluções</p>
-                    <p class="text-slate-400 text-sm mt-3 max-w-3xl leading-relaxed text-justify">
-                        Amplo conhecimento em arquitetura, desenvolvimento e integração de sistemas de missão crítica no âmbito privado, financeiro e governamental. Especialista na implementação de ecossistemas corporativos complexos, barramentos de serviços (APIs), governança DevOps e automações inteligentes aprimoradas com IA.
+        <button onclick="window.print()" class="tech-code bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-md transition-all duration-300 flex items-center gap-2 cursor-pointer">
+            <span>sys.print_to_pdf()</span>
+        </button>
+    </div>
+
+    <div class="cv-card max-w-5xl mx-auto rounded-2xl border transition-all duration-300 overflow-hidden">
+        
+        <header class="relative p-8 sm:p-10 border-b overflow-hidden transition-all duration-300">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent animate-pulse no-print"></div>
+            
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-6 relative z-10">
+                <div class="space-y-3">
+                    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider no-print">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        SYSTEM ARCHITECT // NODE ACTIVE
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono head-name transition-colors">
+                        Antônio César de Jesus Nascimento
+                    </h1>
+                    <div class="w-max max-w-full">
+                        <p class="text-emerald-400 font-mono text-base sm:text-lg font-semibold animate-typing">
+                            &gt; Arquiteto de Soluções AI & Sistemas Críticos_
+                        </p>
+                    </div>
+                    <p class="text-sm max-w-2xl leading-relaxed text-justify mt-2 head-desc text-muted transition-colors">
+                        Especialista em projetar ecossistemas corporativos complexos, barramentos de microsserviços (APIs) e esteiras inteligentes orientadas a agentes autônomos de IA e governança ágil DevOps.
                     </p>
                 </div>
                 
-                <div class="text-sm space-y-2.5 text-slate-300 border-t md:border-t-0 md:border-l border-slate-800 pt-4 md:pt-0 md:pl-6 w-full md:w-auto shrink-0">
-                    <div class="flex items-center gap-2">
-                        <span class="font-bold text-emerald-400">Email:</span>
-                        <a href="mailto:cesardraw@gmail.com" class="hover:underline">cesardraw@gmail.com</a>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-bold text-emerald-400">Telefone:</span>
-                        <span>+55 61 98172-6967</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="font-bold text-emerald-400">Localização:</span>
-                        <span>(Remoto)</span>
-                    </div>
-                    <div class="text-xs text-slate-400 pt-1 border-t border-slate-800/60">
-                        <span class="block"><strong class="text-slate-300">LinkedIn:</strong> linkedin.com/in/antônio-césar-draw-192a4b38</span>
-                    </div>
+                <div class="tech-box tech-code text-xs space-y-2 p-4 rounded-xl border w-full lg:w-auto shrink-0 shadow-inner transition-all">
+                    <p class="text-slate-500 font-bold uppercase tracking-wider mb-2 border-b border-slate-700/40 pb-1 no-print">// CONNECTION_INFO</p>
+                    <p><span class="text-emerald-500 font-semibold">mail:</span> <a href="mailto:cesardraw@gmail.com" class="hover:text-emerald-400 transition-colors">cesardraw@gmail.com</a></p>
+                    <p><span class="text-emerald-500 font-semibold">phone:</span> +55 61 98172-6967</p>
+                    <p><span class="text-emerald-500 font-semibold">spec:</span> (Remoto)</p>
+                    <p><span class="text-emerald-500 font-semibold">lnk:</span> <a href="https://www.linkedin.com/in/antônio-césar-draw-192a4b38" target="_blank" class="text-muted hover:text-emerald-400 transition-colors">/antônio-césar-draw-192a4b38</a></p>
                 </div>
             </div>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+        <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30">
             
             <main class="lg:col-span-2 p-6 sm:p-8 space-y-6">
                 
                 <section>
-                    <h2 class="text-lg font-bold text-slate-950 border-b-2 border-slate-200 pb-2 mb-5 flex items-center gap-2 uppercase tracking-wide">
-                        <span class="w-2.5 h-5 bg-emerald-500 rounded-xs"></span>
-                        Histórico Profissional
+                    <h2 class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors">
+                        <span>[01]</span> JOR_PROFISSIONAL_LOG
                     </h2>
                     
-                    <div class="space-y-6">
-
-                        <div class="relative pl-5 border-l-2 border-emerald-500 page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-emerald-50 print:ring-0"></div>
-                            <div class="flex justify-between items-baseline mb-1 gap-2">
-                                <h3 class="text-base font-bold text-slate-900">FrogDevs</h3>
-                                <span class="text-xs font-semibold px-2 py-0.5 bg-emerald-600 text-white rounded-full shrink-0">Mar de 2025 - Atual</span>
+                    <div class="space-y-6 relative border-l border-slate-700/60 ml-2 timeline-line">
+                        
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">FrogDevs</h3>
+                                <span class="tech-code text-[11px] text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 time-badge">03/2025 - PRESENT</span>
                             </div>
-                            <p class="text-sm font-semibold text-slate-700 mb-1">Arquiteto de Soluções AI & Líder Técnico de Engenharia</p>
-                            <p class="text-[11px] text-slate-500 font-medium mb-1.5 bg-slate-50 px-2 py-1 rounded border border-slate-100">
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções AI & Líder Técnico de Engenharia</p>
+                            <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
                                 <strong>Stack Principal:</strong> n8n Enterprise, Ollama, LangChain, Agentes de IA, BPMN Avançado, Angular, Node.js, Linux Virt (KVM/QEMU), GCP, Supabase.
                             </p>
-                            <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                                Liderança técnica na arquitetura de ecossistemas inteligentes e automações corporativas complexas. Especialista no desenho de fluxos com n8n integrados a agentes autônomos de IA (Ollama/LangChain) e mapeamento de processos com BPMN. Gestão de squads full-stack e provisionamento de infraestrutura escalável em nuvem híbrida com rigorosos critérios de isolamento e segurança.
-                            </p>
-                        </div>
-                        
-                        <div class="relative pl-5 border-l-2 border-slate-200 page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-400"></div>
-                            <div class="flex justify-between items-baseline mb-1 gap-2">
-                                <h3 class="text-base font-bold text-slate-900">act digital</h3>
-                                <span class="text-xs font-semibold px-2 py-0.5 bg-slate-50 text-slate-600 rounded-full shrink-0">Mai de 2024 - Mar de 2025</span>
-                            </div>
-                            <p class="text-sm font-semibold text-slate-700 mb-1">Especialista em Desenvolvimento de Sistemas (Alocado no SICOOB)</p>
-                            <p class="text-[11px] text-slate-500 font-medium mb-1.5 bg-slate-50 px-2 py-1 rounded border border-slate-100">
-                                <strong class="text-slate-700">Competências:</strong> Angular, Java, PHP, Docker, Ansible, Docker-Compose, Modelagem BPMN, Processos ETL, Aprimoramento com IA.
-                            </p>
-                            <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                                Atuação com foco na especificação e desenvolvimento da arquitetura de Front-End e Back-End de sistemas corporativos do ecossistema SICOOB. Orquestração ágil de ambientes distribuídos e estruturação de processos complexos utilizando modelagem BPMN, automações de fluxos e técnicas avançadas de engenharia de prompt para otimização com inteligência artificial.
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Liderança em engenharia e arquitetura de fluxos inteligentes corporativos com n8n Enterprise integrado a LLMs locais (Ollama) e LangChain. Mapeamento avançado com BPMN e governança de infraestrutura segura baseada em Linux KVM e ambientes cloud escaláveis (GCP, Supabase, Contabo).
                             </p>
                         </div>
 
-                        <div class="relative pl-5 border-l-2 border-slate-200 page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-400"></div>
-                            <div class="flex justify-between items-baseline mb-1 gap-2">
-                                <h3 class="text-base font-bold text-slate-900">Consultoria em Arquitetura</h3>
-                                <span class="text-xs text-slate-500 shrink-0">Jan de 2019 - Fev de 2025</span>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">act digital (SICOOB)</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2024 - 2025</span>
                             </div>
-                            <p class="text-sm font-semibold text-slate-700 mb-1">Arquiteto de Soluções (Autônomo)</p>
-                            <p class="text-[11px] text-slate-500 font-medium mb-1.5 bg-slate-50 px-2 py-1 rounded border border-slate-100">
-                                <strong class="text-slate-700">Competências:</strong> Integrações complexas, Cloud (GCP, Contabo, Supabase), n8n, microsserviços.
+                            <p class="text-xs font-semibold role-title mb-2">Especialista em Desenvolvimento de Sistemas</p>
+                            <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
+                                <strong>Stack Principal:</strong> Angular, Java, PHP, Docker, Ansible, Docker-Compose, Modelagem BPMN, Processos ETL, IA.
                             </p>
-                            <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                                Atuação estratégica sob demanda no desenho de arquiteturas de software escaláveis e barramentos de integração de sistemas para médias e grandes empresas. Desenvolvimento de fluxos automatizados inteligentes de alta performance utilizando ferramentas modernas de orquestração e nuvem.
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Arquitetura e especificação de software financeiro de larga escala. Atuação em ecossistemas Java/Angular, orquestração automatizada via Ansible/Docker e implementação de processos críticos de modelagem de dados, BPMN estruturado e ETL.
                             </p>
                         </div>
 
-                        <div class="relative pl-5 border-l-2 border-slate-200 page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-400"></div>
-                            <div class="flex justify-between items-baseline mb-1 gap-2">
-                                <h3 class="text-base font-bold text-slate-900">Globalweb Corp</h3>
-                                <span class="text-xs text-slate-500 shrink-0">Nov de 2023 - Nov de 2024</span>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">Consultoria em Soluções</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2019 - 2025</span>
                             </div>
-                            <p class="text-sm font-semibold text-slate-700 mb-1">Arquiteto de Soluções (Alocado na CAIXA ECONÔMICA FEDERAL)</p>
-                            <p class="text-[11px] text-slate-500 font-medium mb-1.5 bg-slate-50 px-2 py-1 rounded border border-slate-100">
-                                <strong class="text-slate-700">Competências:</strong> Angular, Java, PHP, DevOps, Governança Bancária, Sistemas Críticos.
-                            </p>
-                            <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                                Arquiteto de Software responsável direto pelos sistemas corporativos estratégicos SINEB e SIGPD junto à Caixa Econômica Federal. Liderança técnica no levantamento, especificação e garantia de qualidade do ciclo DevOps de Front-End e Back-End.
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções Autônomo</p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Desenvolvimento sob demanda de infraestruturas em nuvem escaláveis, barramentos de integração automatizados com n8n e microsserviços de alta resiliência para o setor corporativo.
                             </p>
                         </div>
 
-                        <div class="relative pl-5 border-l-2 border-slate-200 page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-400"></div>
-                            <div class="flex justify-between items-baseline mb-1 gap-2">
-                                <h3 class="text-base font-bold text-slate-900">TIVIT</h3>
-                                <span class="text-xs text-slate-500 shrink-0">Jan de 2020 - Jan de 2022</span>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">Globalweb Corp (CAIXA)</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2023 - 2024</span>
                             </div>
-                            <p class="text-sm font-semibold text-slate-700 mb-1">Arquiteto de Soluções Sênior (Alocado na CAIXA ECONÔMICA FEDERAL)</p>
-                            <p class="text-[11px] text-slate-500 font-medium mb-1.5 bg-slate-50 px-2 py-1 rounded border border-slate-100">
-                                <strong class="text-slate-700">Competências:</strong> Angular, Java, PHP, Docker, Ansible, API-Gateway, Swagger.
-                            </p>
-                            <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                                Responsável pela arquitetura técnica e sustentação estrutural inicial dos sistemas corporativos SINEB e SIGPD na CEF. Implementação de barramentos de microsserviços e camadas robustas de abstração de dados (API-Gateway) totalmente padronizadas sob a especificação Swagger.
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções Sênior</p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Engenheiro titular responsável pelos sistemas governamentais estratégicos SINEB e SIGPD na Caixa Econômica Federal. Liderança técnica das especificações e do ciclo de governança DevOps.
                             </p>
                         </div>
 
-                        <div class="relative pl-5 border-l-2 border-slate-200 page-break-inside-avoid">
-                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-400"></div>
-                            <div class="flex justify-between items-baseline mb-1 gap-2">
-                                <h3 class="text-base font-bold text-slate-900">MIDILINE</h3>
-                                <span class="text-xs text-slate-500 shrink-0">Jul de 2018 - Jan de 2019</span>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">TIVIT (CAIXA)</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2020 - 2022</span>
                             </div>
-                            <p class="text-sm font-semibold text-slate-700 mb-1">Arquiteto de Sistemas</p>
-                            <p class="text-[11px] text-slate-500 font-medium mb-1.5 bg-slate-50 px-2 py-1 rounded border border-slate-100">
-                                <strong>Competências:</strong> Java, PHP, DevOps, ShellScript, Python, JavaScript, TypeScript, Angular, Node.js, Material Design, PostgreSQL, MongoDB.
-                            </p>
-                            <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                                Atuação focada em especificação arquitetural completa e orquestração ágil (Docker/Ansible). Liderança em integrações corporativas críticas e de grande escala junto a grandes autarquias e bancos, incluindo BRB, SEI do GDF, IBAMA e MMA.
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções Sênior</p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Implementação estrutural da camada de serviços (API-Gateway) para abstração limpa de persistência de dados sob especificações Swagger e controle DevOps de ambientes críticos (Docker/Ansible).
                             </p>
                         </div>
 
-                        <div class="pt-4 border-t border-slate-200 space-y-4">
-                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wide">Trajetória Sênior Adicional</h4>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                                <div class="bg-slate-50/70 p-3 rounded border border-slate-100">
-                                    <div class="flex justify-between font-bold text-slate-800 mb-0.5">
-                                        <span>CTIS Tecnologia</span>
-                                        <span class="text-slate-500 font-normal">2014 - 2018</span>
-                                    </div>
-                                    <p class="text-slate-600 font-medium mb-1">Desenvolvedor Sênior / DevOps</p>
-                                    <p class="text-slate-500 leading-relaxed text-justify">Desenvolvimento corporativo em Java e sustentação ágil de 29 sistemas legados servidos por APIs sob padrão Swagger para Ministérios públicos federais.</p>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-slate-700/30 archive-section">
+                        <details class="group border rounded-xl p-3 transition-all duration-300 text-details log-box">
+                            <summary class="tech-code text-xs cursor-pointer flex justify-between items-center select-none outline-none">
+                                <span>[+] FETCH_ARCHIVED_LOGS (MIDILINE, CTIS, XYS, POLIEDRO)</span>
+                                <span class="text-emerald-500 group-open:rotate-180 transition-transform duration-200">&darr;</span>
+                            </summary>
+                            <div class="mt-4 space-y-4 text-xs border-t border-slate-700/40 pt-4 archive-content">
+                                <div>
+                                    <p class="font-bold sub-text">MIDILINE <span class="text-slate-500 font-normal">| Arquiteto de Sistemas (2018 - 2019)</span></p>
+                                    <p class="mt-0.5 sub-desc">Barramentos API Swagger e integrações corporativas complexas governamentais (BRB, SEI/GDF, IBAMA, MMA).</p>
                                 </div>
-
-                                <div class="bg-slate-50/70 p-3 rounded border border-slate-100">
-                                    <div class="flex justify-between font-bold text-slate-800 mb-0.5">
-                                        <span>Xys Interatividade</span>
-                                        <span class="text-slate-500 font-normal">2012 - 2014</span>
-                                    </div>
-                                    <p class="text-slate-600 font-medium mb-1">Desenvolvedor Sênior</p>
-                                    <p class="text-slate-500 leading-relaxed text-justify">Engenharia de sistemas RIA, Web e Desktop. Migração estrutural da rede social corporativa da SES/DF de SQL Server para Oracle utilizando Pentaho ETL.</p>
+                                <div>
+                                    <p class="font-bold sub-text">CTIS Tecnologia <span class="text-slate-500 font-normal">| Dev Sênior / DevOps (2014 - 2018)</span></p>
+                                    <p class="mt-0.5 sub-desc">Engenharia Java e orquestração ágil. Gestão de 29 sistemas corporativos distribuídos para Ministérios federais.</p>
                                 </div>
-
-                                <div class="bg-slate-50/70 p-3 rounded border border-slate-100">
-                                    <div class="flex justify-between font-bold text-slate-800 mb-0.5">
-                                        <span>Poliedro</span>
-                                        <span class="text-slate-500 font-normal">2007 - 2012</span>
-                                    </div>
-                                    <p class="text-slate-600 font-medium mb-1">Desenvolvedor Sênior</p>
-                                    <p class="text-slate-500 leading-relaxed text-justify">Análise, especificação e engenharia para contas corporativas públicas e privadas de grande escala (MEC, FNDE, INSS, DATAPREV e Fábrica).</p>
+                                <div>
+                                    <p class="font-bold sub-text">Xys Interatividade <span class="text-slate-500 font-normal">| Desenvolvedor Sênior (2012 - 2014)</span></p>
+                                    <p class="mt-0.5 sub-desc">Migração estrutural de banco de dados da rede social corporativa da SES/DF utilizando Pentaho ETL para Oracle.</p>
                                 </div>
-
-                                <div class="bg-slate-50/70 p-3 rounded border border-slate-100 flex flex-col justify-center">
-                                    <div class="flex justify-between font-bold text-slate-800 mb-0.5">
-                                        <span>Syntax Consultoria</span>
-                                        <span class="text-slate-500 font-normal">2006 - 2007</span>
-                                    </div>
-                                    <p class="text-slate-600 font-medium">Gerente de Desenvolvimento / Projetos</p>
-                                    <p class="text-slate-500 mt-1">Gestão de escopo técnico, liderança de equipes e entregas de sistemas corporativos complexos.</p>
+                                <div>
+                                    <p class="font-bold sub-text">Poliedro <span class="text-slate-500 font-normal">| Desenvolvedor Sênior (2007 - 2012)</span></p>
+                                    <p class="mt-0.5 sub-desc">Sistemas Web de alto tráfego atendendo contas públicas de peso: MEC, FNDE, INSS e DATAPREV.</p>
                                 </div>
                             </div>
-                        </div>
-
+                        </details>
                     </div>
                 </section>
             </main>
             
-            <aside class="p-6 sm:p-8 space-y-6 bg-slate-50/40">
+            <aside class="p-6 sm:p-8 space-y-6 bg-slate-950/10 side-panel">
                 
                 <section>
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-3">
-                        Informações Pessoais
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        // CORE_MATRIX
                     </h2>
-                    <ul class="text-xs space-y-1.5 text-slate-600">
-                        <li><strong class="text-slate-800">Estado Civil:</strong> Casado</li>
-                        <li><strong class="text-slate-800">Nacionalidade:</strong> Brasileira</li>
-                    </ul>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors">AI WORKFLOWS (n8n)</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors">OLLAMA / LLMs</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors">MODELAGEM BPMN / ETL</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors">DOCKER / ANSIBLE</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors">ANGULAR / NODE.JS</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors">KVM / QEMU VIRTL</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors">GCP / SUPABASE</span>
+                    </div>
                 </section>
 
                 <section>
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-3">
-                        Formação Acadêmica
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        // CREDENTIALS
+                    </h2>
+                    <div class="tag-tech p-3 border rounded-xl shadow-inner">
+                        <p class="text-xs font-bold text-emerald-400 tech-code">Zend Certified Engineer</p>
+                        <p class="text-[10px] text-slate-500 font-mono mt-0.5">ID: ZEND007837</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        // ACADEMIC_LOG
                     </h2>
                     <div class="space-y-3 text-xs">
                         <div>
-                            <p class="font-bold text-slate-800">Análise e Desenvolvimento de Sistemas</p>
-                            <p class="text-slate-500">Cruzeiro do Sul | Graduação (2018)</p>
+                            <p class="font-bold sub-text">Análise e Desenvolvimento de Sistemas</p>
+                            <p class="text-slate-500 tech-code">Cruzeiro do Sul | 2018</p>
                         </div>
                         <div>
-                            <p class="font-bold text-slate-800">Desenvolvimento de Jogos Digitais</p>
-                            <p class="text-slate-500">Fatep | Graduação (2007)</p>
+                            <p class="font-bold sub-text">Desenvolvimento de Jogos Digitais</p>
+                            <p class="text-slate-500 tech-code">Fatep | 2007</p>
                         </div>
                     </div>
                 </section>
 
                 <section>
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-3">
-                        Certificações de Peso
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        // SYS_INFO
                     </h2>
-                    <div class="p-2.5 bg-white border border-emerald-200 rounded-lg shadow-xs">
-                        <p class="text-xs font-bold text-emerald-800 uppercase tracking-wide">Zend Certified Engineer</p>
-                        <p class="text-[10px] text-slate-500 font-mono mt-0.5">Credencial: ZEND007837</p>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-3">
-                        Competências Chave
-                    </h2>
-                    <div class="flex flex-wrap gap-1.5">
-                        <span class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-800 rounded font-medium">Arquitetura de Soluções AI</span>
-                        <span class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-800 rounded font-medium">Modelagem BPMN e ETL</span>
-                        <span class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-800 rounded font-medium">Orquestração Docker / Ansible</span>
-                        <span class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-800 rounded font-medium">Automações Inteligentes (n8n)</span>
-                        <span class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-800 rounded font-medium">Ambientes Linux & KVM/QEMU</span>
-                        <span class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-800 rounded font-medium">Supabase / GCP / Contabo</span>
-                        <span class="text-[11px] px-2 py-0.5 bg-slate-200 text-slate-800 rounded font-medium">Engenharia de Prompt / LLMs</span>
-                    </div>
-                </section>
-
-                <section>
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-3">
-                        Formação Complementar
-                    </h2>
-                    <ul class="text-[11px] space-y-1.5 text-slate-600 list-disc list-inside">
-                        <li>Modelagem de Processos (BPMN) - EFTI</li>
-                        <li>Gestão de Projetos Ágeis - EFTI</li>
-                        <li>Levantamento e Especificação de Requisitos</li>
-                        <li>Especializações em Agentes de IA e LangChain</li>
+                    <ul class="text-[11px] space-y-1.5 sys-info-list text-muted">
+                        <li><strong class="sub-text font-semibold">Nacionalidade:</strong> Brasileira</li>
+                        <li><strong class="sub-text font-semibold">Idioma Principal:</strong> Português (Nativo)</li>
+                        <li><strong class="sub-text font-semibold">Inglês Técnico:</strong> Fluência Profissional</li>
                     </ul>
-                </section>
-
-                <section>
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2 mb-3">
-                        Idiomas
-                    </h2>
-                    <div class="space-y-1.5 text-xs">
-                        <div class="flex justify-between">
-                            <span class="text-slate-600 font-medium">Português:</span>
-                            <span class="text-slate-500">Nativo</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-slate-700 font-semibold">Inglês:</span>
-                            <span class="text-emerald-600 font-semibold">Fluência Profissional</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-slate-600 font-medium">Espanhol:</span>
-                            <span class="text-slate-500">Básico Técnico</span>
-                        </div>
-                    </div>
                 </section>
 
             </aside>
         </div>
     </div>
 
-    <div class="max-w-5xl mx-auto mt-6 flex justify-end no-print">
-        <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm px-5 py-2.5 rounded-xl shadow-lg transition flex items-center gap-2 cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/xl" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-            </svg>
-            Imprimir / Salvar como PDF
-        </button>
-    </div>
-
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.querySelector('.theme-btn span');
+            
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                btn.innerText = '> set_theme("DARK")';
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                btn.innerText = '> set_theme("LIGHT")';
+            }
+        }
+    </script>
 </body>
 </html>
