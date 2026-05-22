@@ -1,7 +1,16 @@
 {
-  "nome": "Cesar Draw",
+  "nome": "Antônio César de Jesus Nascimento",
   "cargo": "Arquiteto de Soluções, Inteligência Artificial & Eficiência de Processos (BPMN)",
   "perfil_resumo": "Profissional Sênior especializado em utilizar Inteligência Artificial e sistemas corporativos complexos para otimizar fluxos de trabalho operacionais, eliminar gargalos burocráticos, arquitetar integrações de dados e reduzir os custos organizacionais.",
+  "secoes_titulo": {
+    "experiencias": "[01] JOR_PERFORMANCE_&_OPERATIONS_LOG",
+    "arquivados_header": "// FETCH_ARCHIVED_HISTORICAL_LOGS_ACTIVE (100% EXPANDED)",
+    "competencias": "// EFFICIENCY_MATRIX",
+    "credenciais": "// CREDENTIALS",
+    "academico": "// ACADEMIC_LOG",
+    "sistema": "// SYS_INFO"
+  },
+  "meta_versão": "sys.build_v4.2.6_production",
   "contatos": {
     "email": "cesardraw@gmail.com",
     "telefone": "+55 61 98172-6967",
@@ -14,35 +23,35 @@
       "empresa": "FrogDevs",
       "periodo": "03/2025 - PRESENT",
       "cargo_ocupado": "Arquiteto de Soluções AI & Líder Técnico de Engenharia",
-      "tag_linha": "Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.",
+      "tag_tech": "Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.",
       "descricao": "Engenharia e arquitetura de ecossistemas inteligentes orientados a Agentes Cognitivos Autônomos. Liderança no desenho de fluxos de automação complexos com n8n Enterprise, integrando LLMs locais via Ollama e LangChain para processamento de linguagem natural e tomadas de decisão inteligentes. Desenvolvimento de ferramentas personalizadas acionadas via chamadas de API (Tool Calling) e estruturação de rotinas de extração, transformação e carga de dados (ETL no Magento) para conectar com eficiência a inteligência artificial a ecossistemas corporativos (ERPs/CRMs), eliminando tarefas burocráticas manuais entre faturamento, estoque e compras."
     },
     {
       "empresa": "act digital (SICOOB)",
       "periodo": "2024 - 2025",
       "cargo_ocupado": "Especialista em Desenvolvimento de Sistemas",
-      "tag_linha": "Stack Focado: Angular 14+, Java, PHP, Docker, Ansible, Modelagem BPMN, Processos ETL, Sistemas de Missão Crítica.",
+      "tag_tech": "Stack Focado: Angular 14+, Java, PHP, Docker, Ansible, Modelagem BPMN, Processos ETL, Sistemas de Missão Crítica.",
       "descricao": "Atuação especializada na arquitetura e especificação técnica de Sistemas de Missão Crítica corporativos em ecossistema Java e Front-End moderno com Angular 14+. Foco em ambientes bancários regulados de alta complexidade que exigem tolerância zero a falhas, governança estável de infraestrutura ágil e otimização de grandes fluxos transacionais com modelagem ETL e processos BPMN."
     },
     {
       "empresa": "Consultoria em Soluções",
       "periodo": "2019 - 2025",
       "cargo_ocupado": "Arquiteto de Soluções Autônomo",
-      "tag_linha": "Consultoria corporativa sob demanda.",
+      "tag_tech": "Consultoria corporativa sob demanda.",
       "descricao": "Consultoria dedicada à integração de sistemas legados, infraestrutura em nuvem segura e barramentos de microsserviços customizados para otimização de grandes ecossistemas empresariais e redução de atrito técnico entre departamentos."
     },
     {
       "empresa": "Globalweb Corp (CAIXA)",
       "periodo": "2023 - 2024",
       "cargo_ocupado": "Arquiteto de Soluções Sênior",
-      "tag_linha": "Sistemas SINEB e SIGPD, Java, PHP, DevOps.",
+      "tag_tech": "Sistemas SINEB e SIGPD, Java, PHP, DevOps.",
       "descricao": "Engenheiro titular responsável pela governança técnica, conformidade e arquitetura de ecossistemas bancários governamentais estratégicos e estáveis na Caixa Econômica Federal (SINEB e SIGPD). Liderança técnica das especificações em Java, PHP e ciclo de DevOps."
     },
     {
       "empresa": "TIVIT (CAIXA)",
       "periodo": "2020 - 2022",
       "cargo_ocupado": "Arquiteto de Soluções Sênior",
-      "tag_linha": "API-Gateway, Swagger, Docker, Ansible.",
+      "tag_tech": "API-Gateway, Swagger, Docker, Ansible.",
       "descricao": "Implementação estrutural de camadas robustas de acesso e abstração de dados (API-Gateway) sob especificações rigorosas Swagger, garantindo a integridade transacional, orquestração automatizada e total blindagem operacional de ambientes corporativos críticos."
     }
   ],
