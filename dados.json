@@ -1,5 +1,5 @@
 {
-  "nome": "Cesar Draw",
+  "nome": "Antônio César de Jesus Nascimento",
   "cargo": "Arquiteto de Soluções, Inteligência Artificial & Eficiência de Processos (BPMN)",
   "perfil_resumo": "Profissional Sênior especializado em utilizar Inteligência Artificial e sistemas corporativos complexos para otimizar fluxos de trabalho operacionais, eliminar gargalos burocráticos, arquitetar integrações de dados e reduzir os custos organizacionais.",
   "secoes_titulo": {
@@ -23,7 +23,7 @@
       "empresa": "FrogDevs",
       "periodo": "03/2025 - PRESENT",
       "cargo_ocupado": "Arquiteto de Soluções AI & Líder Técnico de Engenharia",
-      "tag_tech": "Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.",
+      "tag_tech": "Foco Operacional: Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.",
       "descricao": "Engenharia e arquitetura de ecossistemas inteligentes orientados a Agentes Cognitivos Autônomos. Liderança no desenho de fluxos de automação complexos com n8n Enterprise, integrando LLMs locais via Ollama e LangChain para processamento de linguagem natural e tomadas de decisão inteligentes. Desenvolvimento de ferramentas personalizadas acionadas via chamadas de API (Tool Calling) e estruturação de rotinas de extração, transformação e carga de dados (ETL no Magento) para conectar com eficiência a inteligência artificial a ecossistemas corporativos (ERPs/CRMs), eliminando tarefas burocráticas manuais entre faturamento, estoque e compras."
     },
     {
@@ -37,21 +37,21 @@
       "empresa": "Consultoria em Soluções",
       "periodo": "2019 - 2025",
       "cargo_ocupado": "Arquiteto de Soluções Autônomo",
-      "tag_tech": "Consultoria corporativa sob demanda.",
+      "tag_tech": "Foco Operacional: Consultoria corporativa sob demanda.",
       "descricao": "Consultoria dedicada à integração de sistemas legados, infraestrutura em nuvem segura e barramentos de microsserviços customizados para otimização de grandes ecossistemas empresariais e redução de atrito técnico entre departamentos."
     },
     {
       "empresa": "Globalweb Corp (CAIXA)",
       "periodo": "2023 - 2024",
       "cargo_ocupado": "Arquiteto de Soluções Sênior",
-      "tag_tech": "Sistemas SINEB e SIGPD, Java, PHP, DevOps.",
+      "tag_tech": "Foco Operacional: Sistemas SINEB e SIGPD, Java, PHP, DevOps.",
       "descricao": "Engenheiro titular responsável pela governança técnica, conformidade e arquitetura de ecossistemas bancários governamentais estratégicos e estáveis na Caixa Econômica Federal (SINEB e SIGPD). Liderança técnica das especificações em Java, PHP e ciclo de DevOps."
     },
     {
       "empresa": "TIVIT (CAIXA)",
       "periodo": "2020 - 2022",
       "cargo_ocupado": "Arquiteto de Soluções Sênior",
-      "tag_tech": "API-Gateway, Swagger, Docker, Ansible.",
+      "tag_tech": "Foco Operacional: API-Gateway, Swagger, Docker, Ansible.",
       "descricao": "Implementação estrutural de camadas robustas de acesso e abstração de dados (API-Gateway) sob especificações rigorosas Swagger, garantindo a integridade transacional, orquestração automatizada e total blindagem operacional de ambientes corporativos críticos."
     }
   ],
