@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antônio César - Arquiteto de Soluções AI</title>
+    <title>Antônio César - Arquiteto de Soluções AI & Eficiência</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,12 +22,15 @@
         @media (min-width: 1024px) {
             .animate-typing { overflow: hidden; border-right: 2px solid #10b981; white-space: nowrap; animation: typing 3.5s steps(30, end), blink .75s step-end infinite; }
         }
+        @media (max-width: 1023px) {
+            .animate-typing { border-right: none; white-space: normal; word-break: break-word; }
+        }
         
-        /* --- GRIDS DE FUNDO --- */
+        /* --- CONFIGURAÇÕES DE GRIDS DE FUNDO --- */
         body.dark-mode { background-color: #0f172a; color: #f1f5f9; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px); }
         body.light-mode { background-color: #f8fafc; color: #1e293b; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px); }
         
-        /* --- TEMAS CSS --- */
+        /* --- DINÂMICA DE TEMAS CSS --- */
         body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
         body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
         body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
@@ -49,26 +52,35 @@
         body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
         body.light-mode .timeline-line { border-color: #e2e8f0; }
 
-        /* --- IMPRESSÃO --- */
+        /* --- CONTROLE E PREVENÇÃO DE QUEBRA E ENCAIXE DE IMPRESSÃO --- */
         @media print {
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            body { background: #ffffff !important; color: #0f172a !important; }
+            body { background: #ffffff !important; color: #0f172a !important; padding: 0 !important; }
             .no-print { display: none !important; }
-            .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
-            header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 20px 0 !important; }
-            h1, .head-name { color: #0f172a !important; font-size: 24pt !important; }
-            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 14pt !important; white-space: normal !important; }
-            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #cbd5e1 !important; margin-bottom: 15px !important; }
-            h3, .comp-title { color: #0f172a !important; font-size: 12pt !important; }
-            p, li, .text-desc, .head-desc { color: #334155 !important; font-size: 10pt !important; }
+            
+            /* Preservar o Grid de 3 colunas original da página no papel */
+            .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; display: block !important; }
+            .main-grid { display: grid !important; grid-template-cols: repeat(3, minmax(0, 1fr)) !important; }
+            main { grid-column: span 2 / span 2 !important; p: 1.5rem !important; }
+            aside { grid-column: span 1 / span 1 !important; background-color: #f8fafc !important; p: 1.5rem !important; border-left: 1px solid #e2e8f0 !important; }
+            
+            header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 15px 0 !important; }
+            h1, .head-name { color: #0f172a !important; font-size: 22pt !important; }
+            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 13pt !important; white-space: normal !important; }
+            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #cbd5e1 !important; margin-bottom: 12px !important; font-size: 10pt !important; }
+            h3, .comp-title { color: #0f172a !important; font-size: 11pt !important; }
+            p, li, .text-desc, .head-desc, .sub-desc { color: #334155 !important; font-size: 9pt !important; line-height: 1.4 !important; }
             .text-muted { color: #475569 !important; }
-            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
-            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #334155 !important; }
-            .tag-tech { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; }
+            
+            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; padding: 10px !important; }
+            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #334155 !important; padding: 3px 6px !important; font-size: 8.5pt !important; }
+            .tag-tech { background: #ffffff !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; padding: 2px 4px !important; font-size: 8pt !important; }
             .timeline-line { border-left-color: #cbd5e1 !important; }
             .timeline-dot { background: #ffffff !important; border: 2px solid #0f172a !important; }
-            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; }
-            @page { margin: 1.2cm; size: A4; }
+            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; padding: 12px !important; }
+            
+            footer { border-top: 1px solid #cbd5e1 !important; color: #475569 !important; font-size: 8pt !important; padding-top: 8px !important; }
+            @page { margin: 1cm 1.2cm; size: A4; }
             .page-break-inside-avoid { page-break-inside: avoid; }
         }
     </style>
@@ -91,7 +103,7 @@
                 <div class="space-y-3 flex-1 min-w-0">
                     <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider no-print">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                        IT - SOLUTIONS ARCHITECT 
+                        SOLUTIONS ARCHITECT // EFFICIENCY NODE ACTIVE
                     </div>
                     <h1 id="dyn-nome" class="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono head-name transition-colors break-words">Loading...</h1>
                     <div class="max-w-full">
@@ -110,12 +122,12 @@
             </div>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30">
+        <div class="main-grid grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30">
+            
             <main class="lg:col-span-2 p-6 sm:p-8 space-y-6">
                 <section>
-                    <h2 class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors">
-                        <span>[01]</span> Resumo Profissional (54 Últimos)
-                    </h2>
+                    <h2 id="title-experiencias" class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors">
+                        </h2>
                     <div id="container-experiencias" class="space-y-6 relative border-l border-slate-700/60 ml-2 timeline-line">
                         </div>
                     
@@ -128,17 +140,15 @@
             
             <aside class="p-6 sm:p-8 space-y-6 bg-slate-950/10 side-panel">
                 <section>
-                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
-                        // EFFICIENCY_MATRIX
-                    </h2>
+                    <h2 id="title-competencias" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        </h2>
                     <div id="container-competencias" class="flex flex-wrap gap-1.5">
                         </div>
                 </section>
 
                 <section>
-                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
-                        // CREDENTIALS
-                    </h2>
+                    <h2 id="title-credenciais" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        </h2>
                     <div class="tag-tech p-3 border rounded-xl shadow-inner">
                         <p class="text-xs font-bold text-emerald-400 tech-code">Zend Certified Engineer</p>
                         <p class="text-[10px] text-slate-500 font-mono mt-0.5">ID: ZEND007837</p>
@@ -146,9 +156,8 @@
                 </section>
 
                 <section>
-                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
-                        // ACADEMIC_LOG
-                    </h2>
+                    <h2 id="title-academico" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        </h2>
                     <div class="space-y-3 text-xs">
                         <div>
                             <p class="font-bold sub-text">Análise e Desenvolvimento de Sistemas</p>
@@ -162,9 +171,8 @@
                 </section>
 
                 <section>
-                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
-                        // SYS_INFO
-                    </h2>
+                    <h2 id="title-sistema" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40">
+                        </h2>
                     <ul class="text-[11px] space-y-1.5 sys-info-list text-muted">
                         <li><strong class="sub-text font-semibold">Nacionalidade:</strong> Brasileira</li>
                         <li><strong class="sub-text font-semibold">Idioma Principal:</strong> Português (Nativo)</li>
@@ -173,6 +181,11 @@
                 </section>
             </aside>
         </div>
+        
+        <footer class="tech-code text-[10px] text-center py-3 bg-slate-950/20 border-t border-slate-800/40 text-slate-500 flex justify-between px-8">
+            <span id="dyn-versao"></span>
+            <span>Generated: May 2026 // State: Validated</span>
+        </footer>
     </div>
 
     <script>
@@ -187,10 +200,20 @@
         });
 
         function renderizarCurriculo(data) {
-            // Injeção de textos simples
+            // Textos Estruturais Principais
             document.getElementById("dyn-nome").innerText = data.nome || "";
             document.getElementById("dyn-cargo").innerText = data.cargo ? `> ${data.cargo}_` : "";
             document.getElementById("dyn-perfil").innerText = data.perfil_resumo || "";
+            document.getElementById("dyn-versao").innerText = data.meta_versão || "// debug_mode_active";
+            
+            // Injeção de Títulos Dinâmicos do JSON
+            if (data.secoes_titulo) {
+                document.getElementById("title-experiencias").innerText = data.secoes_titulo.experiencias || "";
+                document.getElementById("title-competencias").innerText = data.secoes_titulo.competencias || "";
+                document.getElementById("title-credenciais").innerText = data.secoes_titulo.credenciais || "";
+                document.getElementById("title-academico").innerText = data.secoes_titulo.academico || "";
+                document.getElementById("title-sistema").innerText = data.secoes_titulo.sistema || "";
+            }
             
             // Contatos
             document.getElementById("dyn-email").innerText = data.contatos?.email || "";
@@ -200,11 +223,10 @@
             document.getElementById("dyn-linkedin").innerText = data.contatos?.linkedin_label || "";
             document.getElementById("dyn-linkedin").href = data.contatos?.linkedin_url || "#";
 
-            // Renderizar Experiências (Tratamento seguro contra campos indefinidos)
+            // Renderizar Experiências Ativas
             const expContainer = document.getElementById("container-experiencias");
             if (data.experiencias) {
                 expContainer.innerHTML = data.experiencias.map(exp => {
-                    // Descobrir qual chave o JSON usou (segurança de chaves híbridas)
                     const tagBruta = exp.tag_linha || exp.tag_tech || exp.tag_linea || "";
                     const partesTag = tagBruta.includes(':') ? tagBruta.split(':') : ["Foco Operacional", tagBruta];
                     
@@ -228,7 +250,8 @@
             // Renderizar Histórico Expandido
             const arqContainer = document.getElementById("container-arquivados");
             if (data.arquivados) {
-                const headerHtml = `<h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-3">// FETCH_ARCHIVED_HISTORICAL_LOGS_ACTIVE (100% EXPANDED)</h4>`;
+                const subHeaderTitle = data.secoes_titulo?.arquivados_header || "// ARCHIVED_LOGS";
+                const headerHtml = `<h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-3">${subHeaderTitle}</h4>`;
                 const listHtml = data.arquivados.map(arq => `
                     <div class="border-b border-slate-700/30 pb-3 mb-3 last:border-none last:pb-0 last:mb-0">
                         <p class="font-bold sub-text">${arq.empresa || ""} <span class="text-slate-500 font-normal">| ${arq.info || ""}</span></p>
@@ -239,7 +262,7 @@
                 arqContainer.innerHTML = headerHtml + listHtml;
             }
 
-            // Competências
+            // Matriz de Competências
             const compContainer = document.getElementById("container-competencias");
             if (data.competencias) {
                 compContainer.innerHTML = data.competencias.map(comp => `
