@@ -16,7 +16,6 @@
             transition: background-color 0.2s ease, color 0.2s ease; 
         }
         .tech-code { font-family: 'Roboto Mono', monospace; }
-        
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
         
@@ -31,7 +30,7 @@
         body.dark-mode { background-color: #0f172a; color: #f1f5f9; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px); }
         body.light-mode { background-color: #f8fafc; color: #1e293b; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px); }
         
-        /* --- DINÂMICA DE TEMAS CSS --- */
+        /* --- TEMAS CSS (TELA) --- */
         body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
         body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
         body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
@@ -53,29 +52,56 @@
         body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
         body.light-mode .timeline-line { border-color: #e2e8f0; }
 
-        /* --- REGRAS ABSOLUTAS DE IMPRESSÃO --- */
+        /* --- REGRAS ABSOLUTAS DE IMPRESSÃO (FORÇA DUAS COLUNAS ASYMMETRIC) --- */
         @media print {
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            body { background: #ffffff !important; color: #0f172a !important; padding: 0 !important; }
+            * { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+            body { 
+                background: #ffffff !important; 
+                color: #0f172a !important; 
+                padding: 0 !important;
+            }
             .no-print { display: none !important; }
             
+            /* Trava o espelhamento exato de duas colunas no papel */
+            .main-grid { 
+                display: grid !important; 
+                grid-template-columns: 3fr 1fr !important; 
+                gap: 0 !important;
+            }
+            main { 
+                width: 100% !important;
+                padding: 1.5rem !important; 
+            }
+            aside { 
+                width: 100% !important;
+                background-color: #f8fafc !important; 
+                padding: 1.5rem !important; 
+                border-left: 1px solid #cbd5e1 !important;
+                border-top: none !important;
+            }
+            
+            /* Calibragem de tipografia para encaixe perfeito */
             .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
-            header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 20px 0 !important; }
-            h1, .head-name { color: #0f172a !important; font-size: 24pt !important; }
-            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 14pt !important; white-space: normal !important; }
-            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #94a3b8 !important; font-size: 9.5pt !important; }
-            h3, .comp-title { color: #0f172a !important; font-size: 11pt !important; }
+            header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 15px 0 !important; }
+            h1, .head-name { color: #0f172a !important; font-size: 20pt !important; }
+            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 11.5pt !important; white-space: normal !important; }
+            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #94a3b8 !important; font-size: 9.5pt !important; padding-bottom: 4px !important; margin-bottom: 12px !important; }
+            h3, .comp-title { color: #0f172a !important; font-size: 10pt !important; }
             p, li, .text-desc, .head-desc, .sub-desc { color: #334155 !important; font-size: 8.5pt !important; line-height: 1.35 !important; }
             .text-muted { color: #475569 !important; }
             
-            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
-            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #334155 !important; padding: 4px 8px !important; }
-            .tag-tech { background: #ffffff !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; }
+            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; padding: 10px !important; }
+            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #1e293b !important; font-size: 7.5pt !important; padding: 3px 6px !important; }
+            .tag-tech { background: #ffffff !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; font-size: 7.5pt !important; }
             .timeline-line { border-left-color: #cbd5e1 !important; }
             .timeline-dot { background: #ffffff !important; border: 2px solid #0f172a !important; }
-            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; }
-            footer { border-top: 1px solid #cbd5e1 !important; color: #475569 !important; }
-            @page { margin: 0.8cm 1.1cm; size: A4; }
+            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; padding: 12px !important; }
+            
+            footer { border-top: 1px solid #cbd5e1 !important; color: #475569 !important; font-size: 7.5pt !important; padding-top: 6px !important; }
+            @page { margin: 0.8cm 1cm; size: A4; }
             .page-break-inside-avoid { page-break-inside: avoid !important; }
         }
     </style>
@@ -110,7 +136,7 @@
                 <div class="space-y-3 flex-1 min-w-0">
                     <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider no-print">
                         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                        SOLUTIONS ARCHITECT // NODE ACTIVE
+                        SOLUTIONS ARCHITECT // EFFICIENCY NODE ACTIVE
                     </div>
                     <h1 id="dyn-nome" class="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono head-name transition-colors break-words print:text-slate-900">Loading...</h1>
                     <div class="max-w-full">
@@ -129,9 +155,9 @@
             </div>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 print:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30 print:divide-slate-200">
+        <div class="main-grid grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30 print:divide-slate-200">
             
-            <main class="lg:col-span-2 print:col-span-2 p-6 sm:p-8 print:p-6 space-y-6 bg-transparent print:bg-white">
+            <main class="p-6 sm:p-8 print:p-6 space-y-6 bg-transparent print:bg-white">
                 <section>
                     <h2 id="title-experiencias" class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors print:text-slate-900">
                         </h2>
@@ -145,7 +171,7 @@
                 </section>
             </main>
             
-            <aside class="p-6 sm:p-8 print:p-6 space-y-6 bg-slate-950/10 print:bg-slate-50/50 side-panel print:col-span-1">
+            <aside class="p-6 sm:p-8 print:p-6 space-y-6 bg-slate-950/10 print:bg-slate-50/50 side-panel">
                 <section>
                     <h2 id="title-competencias" class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 print:text-slate-900 print:border-slate-300">
                         </h2>
@@ -207,11 +233,13 @@
         });
 
         function renderizarCurriculo(data) {
+            // Textos Estruturais Principais
             document.getElementById("dyn-nome").innerText = data.nome || "";
             document.getElementById("dyn-cargo").innerText = data.cargo ? `> ${data.cargo}_` : "";
             document.getElementById("dyn-perfil").innerText = data.perfil_resumo || "";
             document.getElementById("dyn-versao").innerText = data.meta_versão || "v4.2.6_production";
             
+            // Injeção de Títulos Dinâmicos das Seções
             if (data.secoes_titulo) {
                 document.getElementById("title-experiencias").innerText = data.secoes_titulo.experiencias || "";
                 document.getElementById("title-competencias").innerText = data.secoes_titulo.competencias || "";
@@ -220,6 +248,7 @@
                 document.getElementById("title-sistema").innerText = data.secoes_titulo.sistema || "";
             }
             
+            // Contatos
             document.getElementById("dyn-email").innerText = data.contatos?.email || "";
             document.getElementById("dyn-email").href = data.contatos?.email ? `mailto:${data.contatos.email}` : "#";
             document.getElementById("dyn-phone").innerText = data.contatos?.telefone || "";
@@ -227,6 +256,7 @@
             document.getElementById("dyn-linkedin").innerText = data.contatos?.linkedin_label || "";
             document.getElementById("dyn-linkedin").href = data.contatos?.linkedin_url || "#";
 
+            // Renderizar Experiências Ativas
             const expContainer = document.getElementById("container-experiencias");
             if (data.experiencias) {
                 expContainer.innerHTML = data.experiencias.map(exp => {
@@ -250,6 +280,7 @@
                 }).join('');
             }
 
+            // Renderizar Histórico Expandido
             const arqContainer = document.getElementById("container-arquivados");
             if (data.arquivados) {
                 const subHeaderTitle = data.secoes_titulo?.arquivados_header || "// ARCHIVED_LOGS";
@@ -264,6 +295,7 @@
                 arqContainer.innerHTML = headerHtml + listHtml;
             }
 
+            // Matriz de Competências
             const compContainer = document.getElementById("container-competencias");
             if (data.competencias) {
                 compContainer.innerHTML = data.competencias.map(comp => `
@@ -272,7 +304,7 @@
             }
         }
 
-        // ALTERNADOR DE TEMA COMPACTO COM ATUALIZAÇÃO VISUAL DO BOTÃO
+        // Alternador de Temas
         function toggleTheme() {
             const body = document.body;
             const text = document.getElementById('theme-text');
