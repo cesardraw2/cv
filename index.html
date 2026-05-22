@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cesar Draw - Arquiteto de Soluções AI & Eficiência</title>
+    <title>Antônio César - Arquiteto de Soluções AI & Eficiência</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,7 @@
             transition: background-color 0.2s ease, color 0.2s ease; 
         }
         .tech-code { font-family: 'Roboto Mono', monospace; }
+        
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
         
@@ -26,11 +27,11 @@
             .animate-typing { border-right: none; white-space: normal; word-break: break-word; }
         }
         
-        /* --- CONFIGURAÇÕES DE GRIDS DE FUNDO --- */
+        /* --- GRIDS DE FUNDO TELA --- */
         body.dark-mode { background-color: #0f172a; color: #f1f5f9; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px); }
         body.light-mode { background-color: #f8fafc; color: #1e293b; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px); }
         
-        /* --- TEMAS CSS (TELA) --- */
+        /* --- DINÂMICA DE TEMAS CSS --- */
         body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
         body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
         body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
@@ -52,7 +53,7 @@
         body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
         body.light-mode .timeline-line { border-color: #e2e8f0; }
 
-        /* --- REGRAS ABSOLUTAS DE IMPRESSÃO (FORÇA DUAS COLUNAS ASYMMETRIC) --- */
+        /* --- CONTROLE FORÇADO DE IMPRESSÃO (BLINDAGEM CONTRA COLAPSO DO ASIDE) --- */
         @media print {
             * { 
                 -webkit-print-color-adjust: exact !important; 
@@ -65,25 +66,26 @@
             }
             .no-print { display: none !important; }
             
-            /* Trava o espelhamento exato de duas colunas no papel */
+            /* Amarra o layout em duas colunas independentes usando flexbox forçado com prioridade máxima */
             .main-grid { 
-                display: grid !important; 
-                grid-template-columns: 3fr 1fr !important; 
-                gap: 0 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                width: 100% !important;
             }
             main { 
-                width: 100% !important;
+                width: 70% !important;
                 padding: 1.5rem !important; 
+                box-sizing: border-box !important;
             }
             aside { 
-                width: 100% !important;
+                width: 30% !important;
                 background-color: #f8fafc !important; 
                 padding: 1.5rem !important; 
                 border-left: 1px solid #cbd5e1 !important;
-                border-top: none !important;
+                box-sizing: border-box !important;
             }
             
-            /* Calibragem de tipografia para encaixe perfeito */
+            /* Ajustes Gerais de Encaixe em 2 Páginas */
             .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; }
             header { background: #ffffff !important; border-bottom: 3px solid #10b981 !important; padding: 0 0 15px 0 !important; }
             h1, .head-name { color: #0f172a !important; font-size: 20pt !important; }
@@ -91,7 +93,6 @@
             .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #94a3b8 !important; font-size: 9.5pt !important; padding-bottom: 4px !important; margin-bottom: 12px !important; }
             h3, .comp-title { color: #0f172a !important; font-size: 10pt !important; }
             p, li, .text-desc, .head-desc, .sub-desc { color: #334155 !important; font-size: 8.5pt !important; line-height: 1.35 !important; }
-            .text-muted { color: #475569 !important; }
             
             .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; padding: 10px !important; }
             .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #1e293b !important; font-size: 7.5pt !important; padding: 3px 6px !important; }
@@ -233,13 +234,11 @@
         });
 
         function renderizarCurriculo(data) {
-            // Textos Estruturais Principais
             document.getElementById("dyn-nome").innerText = data.nome || "";
             document.getElementById("dyn-cargo").innerText = data.cargo ? `> ${data.cargo}_` : "";
             document.getElementById("dyn-perfil").innerText = data.perfil_resumo || "";
             document.getElementById("dyn-versao").innerText = data.meta_versão || "v4.2.6_production";
             
-            // Injeção de Títulos Dinâmicos das Seções
             if (data.secoes_titulo) {
                 document.getElementById("title-experiencias").innerText = data.secoes_titulo.experiencias || "";
                 document.getElementById("title-competencias").innerText = data.secoes_titulo.competencias || "";
@@ -248,7 +247,6 @@
                 document.getElementById("title-sistema").innerText = data.secoes_titulo.sistema || "";
             }
             
-            // Contatos
             document.getElementById("dyn-email").innerText = data.contatos?.email || "";
             document.getElementById("dyn-email").href = data.contatos?.email ? `mailto:${data.contatos.email}` : "#";
             document.getElementById("dyn-phone").innerText = data.contatos?.telefone || "";
@@ -256,11 +254,10 @@
             document.getElementById("dyn-linkedin").innerText = data.contatos?.linkedin_label || "";
             document.getElementById("dyn-linkedin").href = data.contatos?.linkedin_url || "#";
 
-            // Renderizar Experiências Ativas
             const expContainer = document.getElementById("container-experiencias");
             if (data.experiencias) {
                 expContainer.innerHTML = data.experiencias.map(exp => {
-                    const tagBruta = exp.tag_linha || exp.tag_tech || exp.tag_linea || "";
+                    const tagBruta = exp.tag_tech || exp.tag_linha || exp.tag_linea || "";
                     const partesTag = tagBruta.includes(':') ? tagBruta.split(':') : ["Foco Operacional", tagBruta];
                     
                     return `
@@ -280,7 +277,6 @@
                 }).join('');
             }
 
-            // Renderizar Histórico Expandido
             const arqContainer = document.getElementById("container-arquivados");
             if (data.arquivados) {
                 const subHeaderTitle = data.secoes_titulo?.arquivados_header || "// ARCHIVED_LOGS";
@@ -295,7 +291,6 @@
                 arqContainer.innerHTML = headerHtml + listHtml;
             }
 
-            // Matriz de Competências
             const compContainer = document.getElementById("container-competencias");
             if (data.competencias) {
                 compContainer.innerHTML = data.competencias.map(comp => `
@@ -304,7 +299,6 @@
             }
         }
 
-        // Alternador de Temas
         function toggleTheme() {
             const body = document.body;
             const text = document.getElementById('theme-text');
