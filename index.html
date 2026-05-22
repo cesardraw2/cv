@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cesar Draw - Arquiteto de Soluções AI</title>
+    <title>Antônio César - Arquiteto de Soluções AI</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Inter', sans-serif; transition: background-color 0.2s ease, color 0.2s ease; }
+        /* --- ESTILOS GLOBAIS E TRANSIÇÃO --- */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: background-color 0.2s ease, color 0.2s ease; 
+        }
         .tech-code { font-family: 'Roboto Mono', monospace; }
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
@@ -19,8 +23,11 @@
             .animate-typing { overflow: hidden; border-right: 2px solid #10b981; white-space: nowrap; animation: typing 3.5s steps(30, end), blink .75s step-end infinite; }
         }
         
+        /* --- GRIDS DE FUNDO --- */
         body.dark-mode { background-color: #0f172a; color: #f1f5f9; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px); }
         body.light-mode { background-color: #f8fafc; color: #1e293b; background-size: 40px 40px; background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px); }
+        
+        /* --- TEMAS CSS --- */
         body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
         body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
         body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
@@ -42,6 +49,7 @@
         body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
         body.light-mode .timeline-line { border-color: #e2e8f0; }
 
+        /* --- IMPRESSÃO --- */
         @media print {
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             body { background: #ffffff !important; color: #0f172a !important; }
@@ -113,7 +121,6 @@
                     
                     <div class="mt-6 pt-6 border-t border-slate-700/30">
                         <div id="container-arquivados" class="log-box border rounded-xl p-5 space-y-4">
-                            <h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-2">// FETCH_ARCHIVED_HISTORICAL_LOGS_ACTIVE (100% EXPANDED)</h4>
                             </div>
                     </div>
                 </section>
@@ -169,73 +176,82 @@
     </div>
 
     <script>
-        // Executar a busca assíncrona do JSON assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", () => {
             fetch('./dados.json')
                 .then(response => {
-                    if (!response.ok) throw new Error("Erro ao carregar o arquivo JSON.");
+                    if (!response.ok) throw new Error("Erro ao ler dados.json");
                     return response.json();
                 })
                 .then(data => renderizarCurriculo(data))
-                .catch(err => console.error(err));
+                .catch(err => console.error("Erro na carga:", err));
         });
 
         function renderizarCurriculo(data) {
-            // Mapeamento Elementos Principais
-            document.getElementById("dyn-nome").innerText = data.nome;
-            document.getElementById("dyn-cargo").innerText = `> ${data.cargo}_`;
-            document.getElementById("dyn-perfil").innerText = data.perfil_resumo;
+            // Injeção de textos simples
+            document.getElementById("dyn-nome").innerText = data.nome || "";
+            document.getElementById("dyn-cargo").innerText = data.cargo ? `> ${data.cargo}_` : "";
+            document.getElementById("dyn-perfil").innerText = data.perfil_resumo || "";
             
             // Contatos
-            document.getElementById("dyn-email").innerText = data.contatos.email;
-            document.getElementById("dyn-email").href = `mailto:${data.contatos.email}`;
-            document.getElementById("dyn-phone").innerText = data.contatos.telefone;
-            document.getElementById("dyn-spec").innerText = data.contatos.modalidade;
-            document.getElementById("dyn-linkedin").innerText = data.contatos.linkedin_label;
-            document.getElementById("dyn-linkedin").href = data.contatos.linkedin_url;
+            document.getElementById("dyn-email").innerText = data.contatos?.email || "";
+            document.getElementById("dyn-email").href = data.contatos?.email ? `mailto:${data.contatos.email}` : "#";
+            document.getElementById("dyn-phone").innerText = data.contatos?.telefone || "";
+            document.getElementById("dyn-spec").innerText = data.contatos?.modalidade || "";
+            document.getElementById("dyn-linkedin").innerText = data.contatos?.linkedin_label || "";
+            document.getElementById("dyn-linkedin").href = data.contatos?.linkedin_url || "#";
 
-            // Renderizar Experiências Recentes
+            // Renderizar Experiências (Tratamento seguro contra campos indefinidos)
             const expContainer = document.getElementById("container-experiencias");
-            expContainer.innerHTML = data.experiencias.map(exp => `
-                <div class="relative pl-6 group page-break-inside-avoid">
-                    <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
-                        <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">${exp.empresa}</h3>
-                        <span class="tech-code text-[11px] text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 time-badge">${exp.periodo}</span>
-                    </div>
-                    <p class="text-xs font-semibold role-title mb-2">${exp.cargo_ocupado}</p>
-                    <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
-                        <strong>${exp.tag_linea.split(':')[0]}:</strong> ${exp.tag_linea.split(':')[1] || exp.tag_linea}
-                    </p>
-                    <p class="text-xs text-justify text-desc transition-colors">${exp.descricao}</p>
-                </div>
-            `).join('');
+            if (data.experiencias) {
+                expContainer.innerHTML = data.experiencias.map(exp => {
+                    // Descobrir qual chave o JSON usou (segurança de chaves híbridas)
+                    const tagBruta = exp.tag_linha || exp.tag_tech || exp.tag_linea || "";
+                    const partesTag = tagBruta.includes(':') ? tagBruta.split(':') : ["Foco Operacional", tagBruta];
+                    
+                    return `
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">${exp.empresa || ""}</h3>
+                                <span class="tech-code text-[11px] text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 time-badge">${exp.periodo || ""}</span>
+                            </div>
+                            <p class="text-xs font-semibold role-title mb-2">${exp.cargo_ocupado || ""}</p>
+                            <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
+                                <strong>${partesTag[0].trim()}:</strong> ${partesTag[1].trim()}
+                            </p>
+                            <p class="text-xs text-justify text-desc transition-colors">${exp.descricao || ""}</p>
+                        </div>
+                    `;
+                }).join('');
+            }
 
-            // Renderizar Histórico Arquivado
+            // Renderizar Histórico Expandido
             const arqContainer = document.getElementById("container-arquivados");
-            const headerHtml = `<h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-2">// FETCH_ARCHIVED_HISTORICAL_LOGS_ACTIVE (100% EXPANDED)</h4>`;
-            
-            const listHtml = data.arquivados.map(arq => `
-                <div class="border-b border-slate-800/40 pb-3 last:border-none last:pb-0">
-                    <p class="font-bold sub-text">${arq.empresa} <span class="text-slate-500 font-normal">| ${arq.info}</span></p>
-                    <p class="text-xs mt-1 font-mono text-emerald-600/80">Stack: ${arq.stack}</p>
-                    <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">${arq.desc}</p>
-                </div>
-            `).join('');
-            arqContainer.innerHTML = headerHtml + listHtml;
+            if (data.arquivados) {
+                const headerHtml = `<h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-3">// FETCH_ARCHIVED_HISTORICAL_LOGS_ACTIVE (100% EXPANDED)</h4>`;
+                const listHtml = data.arquivados.map(arq => `
+                    <div class="border-b border-slate-700/30 pb-3 mb-3 last:border-none last:pb-0 last:mb-0">
+                        <p class="font-bold sub-text">${arq.empresa || ""} <span class="text-slate-500 font-normal">| ${arq.info || ""}</span></p>
+                        <p class="text-xs mt-1 font-mono text-emerald-600/80">Stack: ${arq.stack || ""}</p>
+                        <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">${arq.desc || ""}</p>
+                    </div>
+                `).join('');
+                arqContainer.innerHTML = headerHtml + listHtml;
+            }
 
-            // Renderizar Matriz de Competências
+            // Competências
             const compContainer = document.getElementById("container-competencias");
-            compContainer.innerHTML = data.competencias.map(comp => `
-                <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">${comp}</span>
-            `).join('');
+            if (data.competencias) {
+                compContainer.innerHTML = data.competencias.map(comp => `
+                    <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">${comp}</span>
+                `).join('');
+            }
         }
 
-        // Sistema Manual de Troca de Temas
+        // Alternador de Temas
         function toggleTheme() {
             const body = document.body;
             const btn = document.querySelector('.theme-btn span');
-            
             if (body.classList.contains('dark-mode')) {
                 body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
