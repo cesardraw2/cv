@@ -3,871 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antônio César - Arquiteto de Soluções</title>
+    <title>Antônio César - Arquiteto de Soluções AI & Eficiência</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* --- ESTILOS GLOBAIS E TRANSIÇÃO --- */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: background-color 0.3s ease, color 0.3s ease; 
+        }
+        .tech-code { font-family: 'Roboto Mono', monospace; }
+        
+        /* --- ANIMAÇÃO DE DIGITAÇÃO AJUSTADA (Previne Quebra de Layout) --- */
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
+        
+        @media (min-width: 1024px) {
+            .animate-typing {
+                overflow: hidden;
+                border-right: 2px solid #10b981;
+                white-space: nowrap;
+                animation: typing 3.5s steps(30, end), blink .75s step-end infinite;
+            }
+        }
+        @media (max-width: 1023px) {
+            .animate-typing {
+                border-right: none;
+                white-space: normal;
+                word-break: break-word;
+            }
         }
 
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            font-family: 'Fira Code', 'Monaco', monospace;
-            padding: 20px;
-            min-height: 100vh;
-            transition: background 0.3s ease, color 0.3s ease;
+        /* --- CONFIGURAÇÕES DE GRIDS DE FUNDO (TELA) --- */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #f1f5f9;
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(16, 185, 129, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(16, 185, 129, 0.02) 1px, transparent 1px);
         }
-
         body.light-mode {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            background-color: #f8fafc;
             color: #1e293b;
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        /* --- DINÂMICA DE CORES VIA CSS (TELA) --- */
+        body.dark-mode .cv-card { background-color: rgba(30, 41, 59, 0.7); border-color: #334155; }
+        body.dark-mode header { background-color: rgba(15, 23, 42, 0.6); border-color: #334155; }
+        body.dark-mode .tech-box { background-color: rgba(15, 23, 42, 0.8); border-color: #334155; }
+        body.dark-mode .log-box { background-color: rgba(15, 23, 42, 0.4); border-color: rgba(51, 65, 85, 0.6); color: #94a3b8; }
+        body.dark-mode .tag-tech { background-color: #0f172a; border-color: #334155; color: #cbd5e1; }
+        body.dark-mode h1 { color: #ffffff; }
+        body.dark-mode h3 { color: #ffffff; }
+        body.dark-mode .text-muted { color: #94a3b8; }
+        body.dark-mode .text-desc { color: #cbd5e1; }
 
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 8px;
-            background: rgba(15, 23, 42, 0.5);
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
+        body.light-mode .cv-card { background-color: #ffffff; border-color: #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        body.light-mode header { background-color: #f1f5f9; border-color: #e2e8f0; }
+        body.light-mode .tech-box { background-color: #ffffff; border-color: #e2e8f0; box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02); }
+        body.light-mode .log-box { background-color: #f8fafc; border-color: #e2e8f0; color: #475569; }
+        body.light-mode .tag-tech { background-color: #f1f5f9; border-color: #e2e8f0; color: #334155; }
+        body.light-mode h1 { color: #0f172a; }
+        body.light-mode h3 { color: #0f172a; }
+        body.light-mode .text-muted { color: #475569; }
+        body.light-mode .text-desc { color: #334155; }
+        body.light-mode .sec-title { color: #0f172a; }
+        body.light-mode .timeline-dot { border-color: #cbd5e1; background-color: #cbd5e1; }
+        body.light-mode .timeline-line { border-color: #e2e8f0; }
 
-        body.light-mode .header {
-            background: rgba(255, 255, 255, 0.8);
-            border-color: rgba(15, 23, 42, 0.1);
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Fira Code', monospace;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid;
+        /* --- ESTILOS DOS BOTÕES --- */
+        .theme-btn {
+            border-color: #10b981;
+            color: #10b981;
+            background-color: rgba(16, 185, 129, 0.1);
             transition: all 0.3s ease;
         }
 
-        .btn-theme {
-            background: rgba(34, 211, 238, 0.1);
-            border-color: rgba(34, 211, 238, 0.3);
-            color: #22d3ee;
-        }
-
-        .btn-theme:hover {
-            background: rgba(34, 211, 238, 0.2);
-            border-color: rgba(34, 211, 238, 0.6);
-        }
-
-        body.light-mode .btn-theme {
-            background: rgba(15, 23, 42, 0.05);
-            border-color: rgba(15, 23, 42, 0.15);
-            color: #0f172a;
-        }
-
-        body.light-mode .btn-theme:hover {
-            background: rgba(15, 23, 42, 0.1);
-            border-color: rgba(15, 23, 42, 0.3);
-        }
-
-        .btn-print {
-            background: #10b981;
+        .theme-btn:hover {
             border-color: #059669;
-            color: #fff;
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #059669;
         }
 
-        .btn-print:hover {
-            background: #059669;
-            border-color: #047857;
+        body.light-mode .theme-btn {
+            border-color: #0f172a;
+            color: #0f172a;
+            background-color: rgba(15, 23, 42, 0.05);
         }
 
-        .btn-icon {
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-        }
-
-        /* Main Content */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 30px;
-        }
-
-        /* Left Column */
-        .left-column {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        /* Profile Section */
-        .profile-section {
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 8px;
-            padding: 30px;
-            background: rgba(15, 23, 42, 0.5);
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        body.light-mode .profile-section {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba(15, 23, 42, 0.1);
-        }
-
-        .profile-tag {
-            color: #22d3ee;
-            font-size: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .profile-tag {
+        body.light-mode .theme-btn:hover {
+            border-color: #0f172a;
+            background-color: rgba(15, 23, 42, 0.15);
             color: #0f172a;
         }
 
-        .profile-tag::before {
-            content: '> ';
-            color: #22d3ee;
-        }
-
-        body.light-mode .profile-tag::before {
-            color: #0f172a;
-        }
-
-        .profile-name {
-            font-size: 42px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #f1f5f9;
-            line-height: 1.2;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .profile-name {
-            color: #0f172a;
-        }
-
-        .profile-title {
-            color: #22d3ee;
-            font-size: 18px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .profile-title {
-            color: #0f172a;
-        }
-
-        .profile-title::before {
-            content: '> ';
-        }
-
-        .profile-description {
-            color: #cbd5e1;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .profile-description {
-            color: #475569;
-        }
-
-        /* Experience Section */
-        .experience-section {
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 8px;
-            padding: 30px;
-            background: rgba(15, 23, 42, 0.5);
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        body.light-mode .experience-section {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba(15, 23, 42, 0.1);
-        }
-
-        .section-title {
-            color: #22d3ee;
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .section-title {
-            color: #0f172a;
-        }
-
-        .section-title::before {
-            content: '[01] ';
-            color: #22d3ee;
-        }
-
-        body.light-mode .section-title::before {
-            color: #0f172a;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(34, 211, 238, 0.2);
-            margin-left: 10px;
-            transition: background 0.3s ease;
-        }
-
-        body.light-mode .section-title::after {
-            background: rgba(15, 23, 42, 0.1);
-        }
-
-        .experience-item {
-            margin-bottom: 30px;
-            border-left: 2px solid rgba(34, 211, 238, 0.3);
-            padding-left: 20px;
-            transition: border-color 0.3s ease;
-        }
-
-        body.light-mode .experience-item {
-            border-left-color: rgba(15, 23, 42, 0.2);
-        }
-
-        .experience-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .company-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: #f1f5f9;
-            margin-bottom: 5px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .company-name {
-            color: #0f172a;
-        }
-
-        .job-title {
-            color: #cbd5e1;
-            font-size: 14px;
-            margin-bottom: 10px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .job-title {
-            color: #475569;
-        }
-
-        .period {
-            color: #64748b;
-            font-size: 12px;
-            margin-bottom: 10px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .period {
-            color: #64748b;
-        }
-
-        .tech-stack {
-            background: rgba(34, 211, 238, 0.1);
-            border-left: 2px solid #22d3ee;
-            padding: 12px;
-            margin: 12px 0;
-            font-size: 12px;
-            color: #22d3ee;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        body.light-mode .tech-stack {
-            background: rgba(15, 23, 42, 0.05);
-            border-left-color: #0f172a;
-            color: #0f172a;
-        }
-
-        .description {
-            color: #cbd5e1;
-            font-size: 13px;
-            line-height: 1.6;
-            margin-top: 10px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .description {
-            color: #475569;
-        }
-
-        /* Right Column - Sidebar */
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .sidebar-section {
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            border-radius: 8px;
-            padding: 20px;
-            background: rgba(15, 23, 42, 0.5);
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        body.light-mode .sidebar-section {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba(15, 23, 42, 0.1);
-        }
-
-        .sidebar-title {
-            color: #22d3ee;
-            font-size: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .sidebar-title {
-            color: #0f172a;
-        }
-
-        .sidebar-title::before {
-            content: '// ';
-            color: #22d3ee;
-        }
-
-        body.light-mode .sidebar-title::before {
-            color: #0f172a;
-        }
-
-        .contact-item {
-            margin-bottom: 12px;
-            font-size: 12px;
-            color: #cbd5e1;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .contact-item {
-            color: #475569;
-        }
-
-        .contact-label {
-            color: #22d3ee;
-            margin-right: 8px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .contact-label {
-            color: #0f172a;
-        }
-
-        .contact-link {
-            color: #22d3ee;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .contact-link {
-            color: #0f172a;
-        }
-
-        .contact-link:hover {
-            text-decoration: underline;
-        }
-
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .tag {
-            background: rgba(34, 211, 238, 0.1);
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            color: #22d3ee;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 11px;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-        }
-
-        body.light-mode .tag {
-            background: rgba(15, 23, 42, 0.05);
-            border-color: rgba(15, 23, 42, 0.15);
-            color: #0f172a;
-        }
-
-        .credential-item {
-            margin-bottom: 15px;
-            font-size: 12px;
-        }
-
-        .credential-title {
-            color: #22d3ee;
-            font-weight: bold;
-            margin-bottom: 4px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .credential-title {
-            color: #0f172a;
-        }
-
-        .credential-info {
-            color: #cbd5e1;
-            margin-bottom: 2px;
-            transition: color 0.3s ease;
-        }
-
-        body.light-mode .credential-info {
-            color: #475569;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(34, 211, 238, 0.2);
-            color: #64748b;
-            font-size: 12px;
-            transition: border-color 0.3s ease, color 0.3s ease;
-        }
-
-        body.light-mode .footer {
-            border-color: rgba(15, 23, 42, 0.1);
-            color: #64748b;
-        }
-
-        /* Print Styles */
+        /* --- REGRAS ABSOLUTAS DE IMPRESSÃO (FORÇA TEMA LIGHT NO PDF) --- */
         @media print {
             * {
-                margin: 0;
-                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
-
-            body {
-                background: #ffffff !important;
-                color: #1e293b !important;
-                padding: 0 !important;
-                font-size: 10pt;
+            body { background: #ffffff !important; color: #0f172a !important; padding: 0 !important; margin: 0 !important; }
+            .no-print { display: none !important; }
+            .cv-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; box-shadow: none !important; border-radius: 0 !important; }
+            header { background: #ffffff !important; border-bottom: 2px solid #10b981 !important; padding: 15px 0 !important; }
+            
+            /* Grid 2 colunas para impressão */
+            .grid.grid-cols-1 { 
+                display: grid !important;
+                grid-template-columns: 1fr 280px !important;
+                gap: 20px !important;
             }
-
-            .header,
-            .btn-theme,
-            .btn-print,
-            .button-group {
-                display: none !important;
-            }
-
-            .container {
-                max-width: 100%;
-                margin: 0;
-            }
-
-            .main-content {
-                display: grid;
-                grid-template-columns: 1fr 280px;
-                gap: 20px;
-                page-break-inside: avoid;
-            }
-
-            .left-column,
-            .right-column {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .profile-section,
-            .experience-section,
-            .sidebar-section {
-                background: #ffffff !important;
-                border: 1px solid #cbd5e1 !important;
-                border-radius: 0;
+            
+            main { 
                 padding: 15px !important;
-                page-break-inside: avoid;
+                display: block !important;
             }
-
-            .profile-tag,
-            .profile-title,
-            .profile-description,
-            .section-title,
-            .company-name,
-            .job-title,
-            .description,
-            .period,
-            .tech-stack,
-            .sidebar-title,
-            .contact-item,
-            .contact-label,
-            .contact-link,
-            .tag,
-            .credential-title,
-            .credential-info {
-                color: #1e293b !important;
+            
+            aside { 
+                padding: 15px !important;
+                display: block !important;
+                background: #ffffff !important;
             }
-
-            .profile-tag::before,
-            .profile-title::before,
-            .section-title::before,
-            .sidebar-title::before {
-                color: #0f172a !important;
-            }
-
-            .section-title::after {
-                background: #cbd5e1 !important;
-            }
-
-            .profile-name {
-                font-size: 24pt !important;
-                color: #0f172a !important;
-            }
-
-            .profile-title,
-            .section-title,
-            .sidebar-title {
-                color: #0f172a !important;
-                font-weight: bold;
-            }
-
-            .tech-stack {
-                background: #f8fafc !important;
-                border-left: 2px solid #0f172a !important;
-                color: #0f172a !important;
-            }
-
-            .footer {
-                border-top: 1px solid #cbd5e1 !important;
-                color: #64748b !important;
-                margin-top: 15px;
-                padding-top: 10px;
-            }
-
-            /* Controle de quebra de página */
-            .experience-item {
-                page-break-inside: avoid;
-            }
-
-            .tag-list {
-                page-break-inside: avoid;
-            }
-
-            .tag {
-                background: #f1f5f9 !important;
-                border: 1px solid #cbd5e1 !important;
-                display: inline-block;
-            }
-
-            @page {
-                margin: 1cm;
-                size: A4 portrait;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
-            .profile-name {
-                font-size: 32px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .profile-name {
-                font-size: 24px;
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .button-group {
-                width: 100%;
-                justify-content: center;
-            }
+            
+            h1, .head-name { color: #0f172a !important; font-size: 24pt !important; }
+            .animate-typing { border-right: none !important; color: #059669 !important; font-size: 14pt !important; white-space: normal !important; }
+            .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #cbd5e1 !important; margin-bottom: 15px !important; }
+            h3, .comp-title { color: #0f172a !important; font-size: 12pt !important; }
+            p, li, .text-desc, .head-desc { color: #334155 !important; font-size: 10pt !important; }
+            .text-muted { color: #475569 !important; }
+            .tech-box { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; color: #0f172a !important; }
+            .tech-box p, .tech-box span { color: #1e293b !important; }
+            .stack-log { background: #f1f5f9 !important; border: 1px solid #cbd5e1 !important; color: #334155 !important; padding: 4px 8px !important; }
+            .tag-tech { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; color: #0f172a !important; }
+            .timeline-line { border-left-color: #cbd5e1 !important; }
+            .timeline-dot { background: #ffffff !important; border: 2px solid #0f172a !important; }
+            .log-box { background: #f8fafc !important; border: 1px solid #cbd5e1 !important; }
+            .log-box p { color: #334155 !important; }
+            @page { margin: 1cm; size: A4 portrait; }
+            .page-break-inside-avoid { page-break-inside: avoid; }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="button-group">
-                <button id="themeBtn" class="btn btn-theme" onclick="toggleTheme()">
-                    <span id="themeIcon">🌙</span>
-                    <span id="themeLabel">Tema Claro</span>
-                </button>
-                <button id="printBtn" class="btn btn-print" onclick="window.print()">
-                    <span>📥</span>
-                    <span>Baixar PDF</span>
-                </button>
-            </div>
-        </div>
+<body class="dark-mode antialiased min-h-screen py-6 px-4 sm:px-6 lg:px-8 selection:bg-emerald-500 selection:text-black">
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Left Column -->
-            <div class="left-column">
-                <!-- Profile Section -->
-                <div class="profile-section">
-                    <div class="profile-tag">SOLUTIONS ARCHITECT // EFFICIENCY NODE ACTIVE</div>
-                    <h1 class="profile-name">Antônio César de Jesus Nascimento</h1>
-                    <div class="profile-title">Arquiteto de Soluções, Inteligência Artificial & Eficiência de Processos (BPMN)</div>
-                    <p class="profile-description">
+    <div class="max-w-5xl mx-auto mb-4 flex justify-between items-center gap-3 no-print">
+        <button id="themeBtn" onclick="toggleTheme()" class="tech-code text-xs font-semibold px-4 py-2 rounded-xl border transition-all duration-300 cursor-pointer theme-btn">
+            <span id="themeLabel">> set_theme("LIGHT")</span>
+        </button>
+        <button onclick="window.print()" class="tech-code bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-md transition-all duration-300 flex items-center gap-2 cursor-pointer">
+            <span>sys.print_to_pdf()</span>
+        </button>
+    </div>
+
+    <div class="cv-card max-w-5xl mx-auto rounded-2xl border transition-all duration-300 overflow-hidden">
+        
+        <header class="relative p-8 sm:p-10 border-b overflow-hidden transition-all duration-300">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent animate-pulse no-print"></div>
+            
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-6 relative z-10 w-full">
+                <div class="space-y-3 flex-1 min-w-0">
+                    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider no-print">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        SOLUTIONS ARCHITECT // EFFICIENCY NODE ACTIVE
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight font-mono head-name transition-colors break-words">
+                        Antônio César de Jesus Nascimento
+                    </h1>
+                    <div class="max-w-full">
+                        <p class="text-emerald-400 font-mono text-base sm:text-lg font-semibold animate-typing">
+                            &gt; Arquiteto de Soluções, Inteligência Artificial & Eficiência de Processos (BPMN)_
+                        </p>
+                    </div>
+                    <p class="text-sm max-w-2xl leading-relaxed text-justify mt-2 head-desc text-muted transition-colors">
                         Profissional Sênior especializado em utilizar Inteligência Artificial e sistemas corporativos complexos para otimizar fluxos de trabalho operacionais, eliminar gargalos burocráticos, arquitetar integrações de dados e reduzir os custos organizacionais.
                     </p>
                 </div>
-
-                <!-- Experience Section -->
-                <div class="experience-section">
-                    <div class="section-title">PERFORMANCE_&_OPERATIONS_LOG</div>
-
-                    <!-- FrogDevs -->
-                    <div class="experience-item">
-                        <div class="company-name">FrogDevs</div>
-                        <div class="job-title">Arquiteto de Soluções AI & Líder Técnico de Engenharia</div>
-                        <div class="period">03/2025 - PRESENT</div>
-                        <div class="tech-stack">Foco Operacional: Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.</div>
-                        <p class="description">
-                            Engenharia e arquitetura de ecossistemas inteligentes orientados a Agentes Cognitivos Autônomos. Liderança no desenho de fluxos de automação complexos com n8n Enterprise, integrando LLMs locais via Ollama e LangChain para processamento de linguagem natural e tomadas de decisão inteligentes. Desenvolvimento de ferramentas personalizadas acionadas via chamadas de API (Tool Calling) e estruturação de rotinas de extração, transformação e carga de dados (ETL no Magento).
-                        </p>
-                    </div>
-
-                    <!-- act digital (SICOOB) -->
-                    <div class="experience-item">
-                        <div class="company-name">act digital (SICOOB)</div>
-                        <div class="job-title">Especialista em Desenvolvimento de Sistemas</div>
-                        <div class="period">2024 - 2025</div>
-                        <div class="tech-stack">Stack Focado: Angular 14+, Java, PHP, Docker, Ansible, Modelagem BPMN, Processos ETL, Sistemas de Missão Crítica.</div>
-                        <p class="description">
-                            Atuação especializada na arquitetura e especificação técnica de Sistemas de Missão Crítica corporativos em ecossistema Java e Front-End moderno com Angular 14+. Foco em ambientes bancários regulados de alta complexidade.
-                        </p>
-                    </div>
-
-                    <!-- Consultoria em Soluções -->
-                    <div class="experience-item">
-                        <div class="company-name">Consultoria em Soluções</div>
-                        <div class="job-title">Arquiteto de Soluções Autônomo</div>
-                        <div class="period">2019 - 2025</div>
-                        <div class="tech-stack">Foco Operacional: Consultoria corporativa sob demanda.</div>
-                        <p class="description">
-                            Consultoria dedicada à integração de sistemas legados, infraestrutura em nuvem segura e barramentos de microsserviços customizados para otimização de grandes ecossistemas empresariais.
-                        </p>
-                    </div>
-
-                    <!-- Globalweb Corp (CAIXA) -->
-                    <div class="experience-item">
-                        <div class="company-name">Globalweb Corp (CAIXA)</div>
-                        <div class="job-title">Arquiteto de Soluções Sênior</div>
-                        <div class="period">2023 - 2024</div>
-                        <div class="tech-stack">Foco Operacional: Sistemas SINEB e SIGPD, Java, PHP, DevOps.</div>
-                        <p class="description">
-                            Engenheiro titular responsável pela governança técnica, conformidade e arquitetura de ecossistemas bancários governamentais estratégicos na Caixa Econômica Federal.
-                        </p>
-                    </div>
-
-                    <!-- TIVIT (CAIXA) -->
-                    <div class="experience-item">
-                        <div class="company-name">TIVIT (CAIXA)</div>
-                        <div class="job-title">Arquiteto de Soluções Sênior</div>
-                        <div class="period">2020 - 2022</div>
-                        <div class="tech-stack">Foco Operacional: API-Gateway, Swagger, Docker, Ansible.</div>
-                        <p class="description">
-                            Implementação estrutural de camadas robustas de acesso e abstração de dados (API-Gateway) sob especificações rigorosas Swagger.
-                        </p>
-                    </div>
+                
+                <div class="tech-box tech-code text-xs space-y-2 p-4 rounded-xl border w-full lg:w-auto lg:min-w-[280px] shrink-0 shadow-inner transition-all">
+                    <p class="text-slate-500 font-bold uppercase tracking-wider mb-2 border-b border-slate-700/40 pb-1 no-print">// CONNECTION_INFO</p>
+                    <p><span class="text-emerald-500 font-semibold">mail:</span> <a href="mailto:cesardraw@gmail.com" class="hover:text-emerald-400 transition-colors">cesardraw@gmail.com</a></p>
+                    <p><span class="text-emerald-500 font-semibold">phone:</span> +55 61 98172-6967</p>
+                    <p><span class="text-emerald-500 font-semibold">spec:</span> (Remoto)</p>
+                    <p><span class="text-emerald-500 font-semibold">lnk:</span> <a href="https://www.linkedin.com/in/antônio-césar-draw-192a4b38" target="_blank" class="text-muted hover:text-emerald-400 transition-colors">/antônio-césar-draw-192a4b38</a></p>
                 </div>
             </div>
+        </header>
 
-            <!-- Right Column - Sidebar -->
-            <div class="right-column">
-                <!-- Connection Info -->
-                <div class="sidebar-section">
-                    <div class="sidebar-title">CONNECTION_INFO</div>
-                    <div class="contact-item">
-                        <span class="contact-label">mail:</span>
-                        <a href="mailto:cesardraw@gmail.com" class="contact-link">cesardraw@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">phone:</span>
-                        <span>+55 61 98172-6967</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">spec:</span>
-                        <span>(Remoto)</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">lnk:</span>
-                        <a href="https://www.linkedin.com/in/antônio-césar-draw-192a4b38" class="contact-link">antônio-césar-draw-192a4b38</a>
-                    </div>
-                </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-700/30">
+            
+            <main class="lg:col-span-2 p-6 sm:p-8 space-y-6">
+                
+                <section>
+                    <h2 class="text-sm font-bold text-emerald-400 font-mono uppercase tracking-widest flex items-center gap-2 mb-6 sec-title transition-colors">
+                        <span>[01]</span> PERFORMANCE_&_OPERATIONS_LOG
+                    </h2>
+                    
+                    <div class="space-y-6 relative border-l border-slate-700/60 ml-2 timeline-line">
+                        
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">FrogDevs</h3>
+                                <span class="tech-code text-[11px] text-emerald-500 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10 time-badge">03/2025 - PRESENT</span>
+                            </div>
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções AI & Líder Técnico de Engenharia</p>
+                            <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
+                                <strong>Foco Operacional:</strong> Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.
+                            </p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Engenharia e arquitetura de ecossistemas inteligentes orientados a Agentes Cognitivos Autônomos. Liderança no desenho de fluxos de automação complexos com n8n Enterprise, integrando LLMs locais via Ollama e LangChain para processamento de linguagem natural e tomadas de decisão inteligentes. Desenvolvimento de ferramentas personalizadas acionadas via chamadas de API (*Tool Calling*) e estruturação de rotinas de extração, transformação e carga de dados (**ETL no Magento**) para conectar com eficiência a inteligência artificial a ecossistemas corporativos (ERPs/CRMs), eliminando tarefas burocráticas manuais entre faturamento, estoque e compras.
+                            </p>
+                        </div>
 
-                <!-- Efficiency Matrix -->
-                <div class="sidebar-section">
-                    <div class="sidebar-title">EFFICIENCY_MATRIX</div>
-                    <div class="tag-list">
-                        <span class="tag">PROCESSOS ETL (MAGENTO)</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">ORQUESTRAÇÃO AI (n8n)</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">AGENTES COGNITIVOS / LLMs</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">ENGENHARIA DE PROCESSOS (BPMN)</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">SISTEMAS DE MISSÃO CRÍTICA</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">CHAMADA DE SVD / TOOL CALLING</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">INTEGRAÇÃO ERPs / PLATAFORMAS</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">ANGULAR 14+ / TYPESCRIPT</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">PYTHON SPRING BOOT / GOLANG</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">PHP (DOCTRINE) / JAVA</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">SHELLSCRIPT / JAVASCRIPT</span>
-                    </div>
-                    <div class="tag-list">
-                        <span class="tag">INDICADORES GERENCIAIS (KPIs)</span>
-                    </div>
-                </div>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">act digital (SICOOB)</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2024 - 2025</span>
+                            </div>
+                            <p class="text-xs font-semibold role-title mb-2">Especialista em Desenvolvimento de Sistemas</p>
+                            <p class="stack-log text-[11px] mb-1.5 px-2 py-1 rounded border transition-all">
+                                <strong>Stack Focado:</strong> Angular 14+, Java, PHP, Docker, Ansible, Modelagem BPMN, Processos ETL, Sistemas de Missão Crítica.
+                            </p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Atuação especializada na arquitetura e especificação técnica de **Sistemas de Missão Crítica** corporativos em ecossistema Java e Front-End moderno com Angular 14+. Foco em ambientes bancários regulados de alta complexidade que exigem tolerância zero a falhas, governança estável de infraestrutura ágil e otimização de grandes fluxos transacionais com modelagem ETL e processos BPMN.
+                            </p>
+                        </div>
 
-                <!-- Credentials -->
-                <div class="sidebar-section">
-                    <div class="sidebar-title">CREDENTIALS</div>
-                    <div class="credential-item">
-                        <div class="credential-title">Zend Certified Engineer</div>
-                        <div class="credential-info">ID: ZEND007837</div>
-                    </div>
-                </div>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">Consultoria em Soluções</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2019 - 2025</span>
+                            </div>
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções Autônomo</p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Consultoria dedicada à integração de sistemas legados, infraestrutura em nuvem segura e barramentos de microsserviços customizados para otimização de grandes ecossistemas empresariais e redução de atrito técnico entre departamentos.
+                            </p>
+                        </div>
 
-                <!-- Academic -->
-                <div class="sidebar-section">
-                    <div class="sidebar-title">ACADEMIC_LOG</div>
-                    <div class="credential-item">
-                        <div class="credential-title">Análise e Desenvolvimento de Sistemas</div>
-                        <div class="credential-info">Cruzeiro do Sul | 2018</div>
-                    </div>
-                    <div class="credential-item">
-                        <div class="credential-title">Desenvolvimento de Jogos Digitais</div>
-                        <div class="credential-info">Fatep | 2007</div>
-                    </div>
-                </div>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">Globalweb Corp (CAIXA)</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2023 - 2024</span>
+                            </div>
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções Sênior</p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Engenheiro titular responsável pela governança técnica, conformidade e arquitetura de ecossistemas bancários governamentais estratégicos e estáveis na Caixa Econômica Federal (SINEB e SIGPD). Liderança técnica das especificações em Java, PHP e ciclo de DevOps.
+                            </p>
+                        </div>
 
-                <!-- System Info -->
-                <div class="sidebar-section">
-                    <div class="sidebar-title">SYSTEM_INFO</div>
-                    <div class="contact-item">
-                        <span class="contact-label">Nacionalidade:</span>
-                        <span>Brasileira</span>
+                        <div class="relative pl-6 group page-break-inside-avoid">
+                            <div class="absolute -left-[6.5px] top-1.5 w-3 h-3 rounded-full bg-slate-800 border border-slate-600 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300 timeline-dot"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 mb-1">
+                                <h3 class="text-base font-bold comp-title group-hover:text-emerald-400 transition-colors duration-300">TIVIT (CAIXA)</h3>
+                                <span class="tech-code text-[11px] text-slate-500 time-badge">2020 - 2022</span>
+                            </div>
+                            <p class="text-xs font-semibold role-title mb-2">Arquiteto de Soluções Sênior</p>
+                            <p class="text-xs text-justify text-desc transition-colors">
+                                Implementação estrutural de camadas robustas de abstração de dados (API-Gateway) sob especificações rigorosas Swagger, garantindo a integridade transacional, orquestração automatizada e total blindagem operacional de ambientes corporativos críticos.
+                            </p>
+                        </div>
+
                     </div>
-                    <div class="contact-item">
-                        <span class="contact-label">Idioma Principal:</span>
-                        <span>Português (Nativo)</span>
+
+                    <div class="mt-6 pt-6 border-t border-slate-700/30 archive-section">
+                        <div class="log-box border rounded-xl p-5 space-y-4">
+                            <h4 class="tech-code text-xs text-emerald-500 tracking-wider font-bold mb-2">// FETCH_ARCHIVED_HISTORICAL_LOGS_ACTIVE (100% EXPANDED)</h4>
+                            
+                            <div class="border-b border-slate-800/40 pb-3">
+                                <p class="font-bold sub-text">MIDILINE <span class="text-slate-500 font-normal">| Arquiteto de Sistemas (2018 - 2019)</span></p>
+                                <p class="text-xs mt-1 font-mono text-emerald-600/80">Stack: Java, PHP, Devops, ShellScript, Python, JavaScript, TypeScript, Angular, Node, Material Design, PostgreSQL, MongoDB.</p>
+                                <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">Desenho de soluções estruturais e integrações corporativas complexas junto a órgãos federais e distritais de grande porte, incluindo conexões com BRB, SEI do GDF, IBAMA e MMA.</p>
+                            </div>
+                            
+                            <div class="border-b border-slate-800/40 pb-3">
+                                <p class="font-bold sub-text">CTIS Tecnologia <span class="text-slate-500 font-normal">| Dev Sênior / DevOps (2014 - 2018)</span></p>
+                                <p class="text-xs mt-1 font-mono text-emerald-600/80">Stack: Java, DevOps (Docker), PHP, ShellScript, JavaScript, TypeScript, Angular, Node, SQL Server, Oracle.</p>
+                                <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">Gestão, sustentação técnica e automação de 29 sistemas legados simultâneos servindo a grandes Ministérios federais públicos (MS, MTur, MDIC e MCTIC), baseados em barramentos de microsserviços seguros.</p>
+                            </div>
+                            
+                            <div class="border-b border-slate-800/40 pb-3">
+                                <p class="font-bold sub-text">Xys Interatividade <span class="text-slate-500 font-normal">| Desenvolvedor Sênior (2012 - 2014)</span></p>
+                                <p class="text-xs mt-1 font-mono text-emerald-600/80">Stack: Java, PHP, ShellScript, JavaScript, AngularJS, ActionScript (Flash/Flex/Adobe Air), SQL Server, Oracle.</p>
+                                <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">Modelagem e engenharia de dados em migração estrutural crítica da rede social da SES/DF, executando a conversão completa do banco SQL Server para Oracle utilizando Pentaho ETL[cite: 4].</p>
+                            </div>
+                            
+                            <div class="border-b border-slate-800/40 pb-3">
+                                <p class="font-bold sub-text">Poliedro <span class="text-slate-500 font-normal">| Desenvolvedor Sênior (2007 - 2012)</span></p>
+                                <p class="text-xs mt-1 font-mono text-emerald-600/80">Stack: PHP, PostgreSQL, JavaScript, ActionScript (Flash / Flex / Adobe Air).</p>
+                                <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">Especificação e engenharia de software transacional de alta densidade focado em aplicações Stand-alone e Web atendendo MEC, FNDE, INSS, DATAPREV e Fábrica[cite: 4].</p>
+                            </div>
+
+                            <div>
+                                <p class="font-bold sub-text">Syntax Consultoria <span class="text-slate-500 font-normal">| Gerente de Desenvolvimento / Projetos (2006 - 2007)</span></p>
+                                <p class="text-xs mt-1 sub-desc leading-relaxed text-justify">Gestão de escopo técnico, liderança de equipes multidisciplinares e controle de entregas de sistemas corporativos complexos sob demanda.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <span class="contact-label">Inglês Corporativo:</span>
-                        <span>Fluência Profissional</span>
+                </section>
+            </main>
+            
+            <aside class="p-6 sm:p-8 space-y-6 bg-slate-950/10 side-panel transition-all duration-300">
+                
+                <section>
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 transition-colors">
+                        // EFFICIENCY_MATRIX
+                    </h2>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">PROCESSOS ETL (MAGENTO)</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">ORQUESTRACÃO AI (n8n)</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">AGENTES COGNITIVOS / LLMs</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">ENGENHARIA DE PROCESSOS (BPMN)</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">SISTEMAS DE MISSÃO CRÍTICA</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">CHAMADA DE SVD / TOOL CALLING</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">INTEGRAÇÃO ERPs / PLATAFORMAS</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">ANGULAR 14+ / TYPESCRIPT</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">PYTHON SPRING BOOT / GOLANG</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">PHP (DOCTRINE) / JAVA</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">SHELLSCRIPT / JAVASCRIPT</span>
+                        <span class="tag-tech text-[10px] tech-code px-2 py-0.5 border rounded transition-colors font-medium">INDICADORES GERENCIAIS (KPIs)</span>
                     </div>
-                </div>
-            </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 transition-colors">
+                        // CREDENTIALS
+                    </h2>
+                    <div class="tag-tech p-3 border rounded-xl shadow-inner transition-colors">
+                        <p class="text-xs font-bold text-emerald-400 tech-code transition-colors">Zend Certified Engineer</p>
+                        <p class="text-[10px] text-slate-500 font-mono mt-0.5 transition-colors">ID: ZEND007837</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 transition-colors">
+                        // ACADEMIC_LOG
+                    </h2>
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <p class="font-bold sub-text transition-colors">Análise e Desenvolvimento de Sistemas</p>
+                            <p class="text-slate-500 tech-code transition-colors">Cruzeiro do Sul | 2018</p>
+                        </div>
+                        <div>
+                            <p class="font-bold sub-text transition-colors">Desenvolvimento de Jogos Digitais</p>
+                            <p class="text-slate-500 tech-code transition-colors">Fatep | 2007</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 transition-colors">
+                        // SYS_INFO
+                    </h2>
+                    <ul class="text-[11px] space-y-1.5 sys-info-list text-muted transition-colors">
+                        <li><strong class="sub-text font-semibold transition-colors">Nacionalidade:</strong> Brasileira</li>
+                        <li><strong class="sub-text font-semibold transition-colors">Idioma Principal:</strong> Português (Nativo)</li>
+                        <li><strong class="sub-text font-semibold transition-colors">Inglês Corporativo:</strong> Fluência Profissional</li>
+                    </ul>
+                </section>
+
+            </aside>
         </div>
 
-        <!-- Footer -->
-        <div class="footer">
+        <footer class="tech-code text-[10px] text-center py-3 bg-slate-950/20 border-t border-slate-800/40 text-slate-500 transition-all duration-300">
             Generated: May 2026 // State: Validated
-        </div>
+        </footer>
     </div>
 
     <script>
-        // Verificar se existe preferência de tema no localStorage
+        // Inicializar tema ao carregar a página
         function initTheme() {
             const savedTheme = localStorage.getItem('theme') || 'dark-mode';
             document.body.classList.add(savedTheme);
             updateThemeButton();
         }
 
-        // Atualizar botão de tema
+        // Atualizar label do botão
         function updateThemeButton() {
-            const themeIcon = document.getElementById('themeIcon');
-            const themeLabel = document.getElementById('themeLabel');
-            
+            const btn = document.getElementById('themeLabel');
             if (document.body.classList.contains('light-mode')) {
-                themeIcon.textContent = '☀️';
-                themeLabel.textContent = 'Tema Escuro';
+                btn.innerText = '> set_theme("DARK")';
             } else {
-                themeIcon.textContent = '🌙';
-                themeLabel.textContent = 'Tema Claro';
+                btn.innerText = '> set_theme("LIGHT")';
             }
         }
 
-        // Toggle tema
+        // Toggle tema com localStorage
         function toggleTheme() {
-            if (document.body.classList.contains('light-mode')) {
-                document.body.classList.remove('light-mode');
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                document.body.classList.add('light-mode');
+            const body = document.body;
+            
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
                 localStorage.setItem('theme', 'light-mode');
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
             }
             updateThemeButton();
         }
 
-        // Inicializar ao carregar a página
+        // Inicializar quando carregar
         document.addEventListener('DOMContentLoaded', initTheme);
     </script>
 </body>
