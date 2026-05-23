@@ -17,6 +17,12 @@
             font-family: 'Fira Code', 'Monaco', monospace;
             padding: 20px;
             min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #1e293b;
         }
 
         .container {
@@ -34,28 +40,71 @@
             border: 1px solid rgba(34, 211, 238, 0.2);
             border-radius: 8px;
             background: rgba(15, 23, 42, 0.5);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
-        .theme-toggle {
-            background: transparent;
-            border: 1px solid rgba(34, 211, 238, 0.4);
+        body.light-mode .header {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(15, 23, 42, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid;
+            transition: all 0.3s ease;
+        }
+
+        .btn-theme {
+            background: rgba(34, 211, 238, 0.1);
+            border-color: rgba(34, 211, 238, 0.3);
             color: #22d3ee;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Fira Code', monospace;
-            font-size: 12px;
         }
 
-        .pdf-button {
+        .btn-theme:hover {
+            background: rgba(34, 211, 238, 0.2);
+            border-color: rgba(34, 211, 238, 0.6);
+        }
+
+        body.light-mode .btn-theme {
+            background: rgba(15, 23, 42, 0.05);
+            border-color: rgba(15, 23, 42, 0.15);
+            color: #0f172a;
+        }
+
+        body.light-mode .btn-theme:hover {
+            background: rgba(15, 23, 42, 0.1);
+            border-color: rgba(15, 23, 42, 0.3);
+        }
+
+        .btn-print {
             background: #10b981;
-            border: none;
+            border-color: #059669;
             color: #fff;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-family: 'Fira Code', monospace;
-            font-size: 12px;
+        }
+
+        .btn-print:hover {
+            background: #059669;
+            border-color: #047857;
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
         }
 
         /* Main Content */
@@ -78,6 +127,12 @@
             border-radius: 8px;
             padding: 30px;
             background: rgba(15, 23, 42, 0.5);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.light-mode .profile-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(15, 23, 42, 0.1);
         }
 
         .profile-tag {
@@ -87,11 +142,20 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .profile-tag {
+            color: #0f172a;
         }
 
         .profile-tag::before {
             content: '> ';
             color: #22d3ee;
+        }
+
+        body.light-mode .profile-tag::before {
+            color: #0f172a;
         }
 
         .profile-name {
@@ -100,6 +164,11 @@
             margin-bottom: 15px;
             color: #f1f5f9;
             line-height: 1.2;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .profile-name {
+            color: #0f172a;
         }
 
         .profile-title {
@@ -109,6 +178,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .profile-title {
+            color: #0f172a;
         }
 
         .profile-title::before {
@@ -120,6 +194,11 @@
             font-size: 14px;
             line-height: 1.6;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .profile-description {
+            color: #475569;
         }
 
         /* Experience Section */
@@ -128,6 +207,12 @@
             border-radius: 8px;
             padding: 30px;
             background: rgba(15, 23, 42, 0.5);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.light-mode .experience-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(15, 23, 42, 0.1);
         }
 
         .section-title {
@@ -137,11 +222,20 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .section-title {
+            color: #0f172a;
         }
 
         .section-title::before {
             content: '[01] ';
             color: #22d3ee;
+        }
+
+        body.light-mode .section-title::before {
+            color: #0f172a;
         }
 
         .section-title::after {
@@ -150,12 +244,22 @@
             height: 1px;
             background: rgba(34, 211, 238, 0.2);
             margin-left: 10px;
+            transition: background 0.3s ease;
+        }
+
+        body.light-mode .section-title::after {
+            background: rgba(15, 23, 42, 0.1);
         }
 
         .experience-item {
             margin-bottom: 30px;
             border-left: 2px solid rgba(34, 211, 238, 0.3);
             padding-left: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        body.light-mode .experience-item {
+            border-left-color: rgba(15, 23, 42, 0.2);
         }
 
         .experience-item:last-child {
@@ -167,18 +271,33 @@
             font-weight: bold;
             color: #f1f5f9;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .company-name {
+            color: #0f172a;
         }
 
         .job-title {
             color: #cbd5e1;
             font-size: 14px;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .job-title {
+            color: #475569;
         }
 
         .period {
             color: #64748b;
             font-size: 12px;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .period {
+            color: #64748b;
         }
 
         .tech-stack {
@@ -189,6 +308,13 @@
             font-size: 12px;
             color: #22d3ee;
             border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .tech-stack {
+            background: rgba(15, 23, 42, 0.05);
+            border-left-color: #0f172a;
+            color: #0f172a;
         }
 
         .description {
@@ -196,6 +322,11 @@
             font-size: 13px;
             line-height: 1.6;
             margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .description {
+            color: #475569;
         }
 
         /* Right Column - Sidebar */
@@ -210,6 +341,12 @@
             border-radius: 8px;
             padding: 20px;
             background: rgba(15, 23, 42, 0.5);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.light-mode .sidebar-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(15, 23, 42, 0.1);
         }
 
         .sidebar-title {
@@ -219,6 +356,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .sidebar-title {
+            color: #0f172a;
         }
 
         .sidebar-title::before {
@@ -226,20 +368,39 @@
             color: #22d3ee;
         }
 
+        body.light-mode .sidebar-title::before {
+            color: #0f172a;
+        }
+
         .contact-item {
             margin-bottom: 12px;
             font-size: 12px;
             color: #cbd5e1;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .contact-item {
+            color: #475569;
         }
 
         .contact-label {
             color: #22d3ee;
             margin-right: 8px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .contact-label {
+            color: #0f172a;
         }
 
         .contact-link {
             color: #22d3ee;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .contact-link {
+            color: #0f172a;
         }
 
         .contact-link:hover {
@@ -261,6 +422,13 @@
             border-radius: 4px;
             font-size: 11px;
             white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .tag {
+            background: rgba(15, 23, 42, 0.05);
+            border-color: rgba(15, 23, 42, 0.15);
+            color: #0f172a;
         }
 
         .credential-item {
@@ -272,11 +440,21 @@
             color: #22d3ee;
             font-weight: bold;
             margin-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .credential-title {
+            color: #0f172a;
         }
 
         .credential-info {
             color: #cbd5e1;
             margin-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .credential-info {
+            color: #475569;
         }
 
         /* Footer */
@@ -287,6 +465,138 @@
             border-top: 1px solid rgba(34, 211, 238, 0.2);
             color: #64748b;
             font-size: 12px;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode .footer {
+            border-color: rgba(15, 23, 42, 0.1);
+            color: #64748b;
+        }
+
+        /* Print Styles */
+        @media print {
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #1e293b !important;
+                padding: 0 !important;
+                font-size: 10pt;
+            }
+
+            .header,
+            .btn-theme,
+            .btn-print,
+            .button-group {
+                display: none !important;
+            }
+
+            .container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .main-content {
+                display: grid;
+                grid-template-columns: 1fr 280px;
+                gap: 20px;
+                page-break-inside: avoid;
+            }
+
+            .left-column,
+            .right-column {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .profile-section,
+            .experience-section,
+            .sidebar-section {
+                background: #ffffff !important;
+                border: 1px solid #cbd5e1 !important;
+                border-radius: 0;
+                padding: 15px !important;
+                page-break-inside: avoid;
+            }
+
+            .profile-tag,
+            .profile-title,
+            .profile-description,
+            .section-title,
+            .company-name,
+            .job-title,
+            .description,
+            .period,
+            .tech-stack,
+            .sidebar-title,
+            .contact-item,
+            .contact-label,
+            .contact-link,
+            .tag,
+            .credential-title,
+            .credential-info {
+                color: #1e293b !important;
+            }
+
+            .profile-tag::before,
+            .profile-title::before,
+            .section-title::before,
+            .sidebar-title::before {
+                color: #0f172a !important;
+            }
+
+            .section-title::after {
+                background: #cbd5e1 !important;
+            }
+
+            .profile-name {
+                font-size: 24pt !important;
+                color: #0f172a !important;
+            }
+
+            .profile-title,
+            .section-title,
+            .sidebar-title {
+                color: #0f172a !important;
+                font-weight: bold;
+            }
+
+            .tech-stack {
+                background: #f8fafc !important;
+                border-left: 2px solid #0f172a !important;
+                color: #0f172a !important;
+            }
+
+            .footer {
+                border-top: 1px solid #cbd5e1 !important;
+                color: #64748b !important;
+                margin-top: 15px;
+                padding-top: 10px;
+            }
+
+            /* Controle de quebra de página */
+            .experience-item {
+                page-break-inside: avoid;
+            }
+
+            .tag-list {
+                page-break-inside: avoid;
+            }
+
+            .tag {
+                background: #f1f5f9 !important;
+                border: 1px solid #cbd5e1 !important;
+                display: inline-block;
+            }
+
+            @page {
+                margin: 1cm;
+                size: A4 portrait;
+            }
         }
 
         /* Responsive */
@@ -313,6 +623,11 @@
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .button-group {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -320,8 +635,16 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <div class="theme-toggle">> set_theme("LIGHT")</div>
-            <div class="pdf-button">sys.print_to_pdf()</div>
+            <div class="button-group">
+                <button id="themeBtn" class="btn btn-theme" onclick="toggleTheme()">
+                    <span id="themeIcon">🌙</span>
+                    <span id="themeLabel">Tema Claro</span>
+                </button>
+                <button id="printBtn" class="btn btn-print" onclick="window.print()">
+                    <span>📥</span>
+                    <span>Baixar PDF</span>
+                </button>
+            </div>
         </div>
 
         <!-- Main Content -->
@@ -511,13 +834,41 @@
     </div>
 
     <script>
-        // Carregar dados do arquivo JSON (opcional)
-        fetch('dados.json')
-            .then(response => response.json())
-            .then(data => {
-                console.log('Dados carregados:', data);
-            })
-            .catch(error => console.log('Dados não carregados, usando valores padrão'));
+        // Verificar se existe preferência de tema no localStorage
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark-mode';
+            document.body.classList.add(savedTheme);
+            updateThemeButton();
+        }
+
+        // Atualizar botão de tema
+        function updateThemeButton() {
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.textContent = '☀️';
+                themeLabel.textContent = 'Tema Escuro';
+            } else {
+                themeIcon.textContent = '🌙';
+                themeLabel.textContent = 'Tema Claro';
+            }
+        }
+
+        // Toggle tema
+        function toggleTheme() {
+            if (document.body.classList.contains('light-mode')) {
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }
+            updateThemeButton();
+        }
+
+        // Inicializar ao carregar a página
+        document.addEventListener('DOMContentLoaded', initTheme);
     </script>
 </body>
 </html>
