@@ -1,7 +1,7 @@
 {
-  "nome": "Cesar Draw",
+  "nome": "Antônio César de Jesus Nascimento",
   "cargo": "Arquiteto de Soluções, Inteligência Artificial & Eficiência de Processos (BPMN)",
-  "perfil_resumo": "Profissional Sênior especializado em utilizar Inteligência Artificial e sistemas corporativos complexos para otimizar fluxos de trabalho operacionais, eliminar gargalos burocráticos, arquitetar integrações de dados e reduzir os custos organizacionais.",
+  "perfil_resumo": "Profissional Sênior especializado em utilizar Inteligência Artificial e sistemas corporativos complexos para otimizar fluxos de trabalho operacionais, eliminar gargalos burocráticos e implementar soluções escaláveis. Expertise em BPMN, LLMs, n8n Enterprise e orquestração de processos autônomos.",
   "secoes_titulo": {
     "experiencias": "Jornada Profissional & Gestão de Eficiência",
     "arquivados_header": "Histórico de Engenharia e Sistemas Adicionais",
@@ -23,36 +23,36 @@
       "empresa": "FrogDevs",
       "periodo": "03/2025 - PRESENT",
       "cargo_ocupado": "Arquiteto de Soluções AI & Líder Técnico de Engenharia",
-      "tag_tech": "Foco Operacional: Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.",
-      "descricao": "Engenharia e arquitetura de ecossistemas inteligentes orientados a Agentes Cognitivos Autônomos. Liderança no desenho de fluxos de automação complexos com n8n Enterprise, integrando LLMs locais via Ollama e LangChain para processamento de linguagem natural e tomadas de decisão inteligentes. Desenvolvimento de ferramentas personalizadas acionadas via chamadas de API (Tool Calling) e estruturação de rotinas de extração, transformação e carga de dados (ETL no Magento) para conectar com eficiência a inteligência artificial a ecossistemas corporativos (ERPs/CRMs), eliminando tarefas burocráticas manuais entre faturamento, estoque e compras."
+      "tag_tech": "Integração ERPs/CRMs, Processos ETL (Magento), Orquestração AI (n8n Enterprise), LLMs Locais (Ollama), LangChain, Tool Calling/APIs.",
+      "descricao": "Engenharia e arquitetura de ecossistemas inteligentes orientados a Agentes Cognitivos Autônomos. Liderança no desenho de fluxos de automação complexos com n8n Enterprise, integrando Magento, APIs customizadas e LLMs para otimização operacional de clientes enterprise."
     },
     {
       "empresa": "act digital (SICOOB)",
       "periodo": "2024 - 2025",
       "cargo_ocupado": "Especialista em Desenvolvimento de Sistemas",
-      "tag_tech": "Stack Focado: Angular 14+, Java, PHP, Docker, Ansible, Modelagem BPMN, Processos ETL, Sistemas de Missão Crítica.",
-      "descricao": "Atuação especializada na arquitetura e especificação técnica de Sistemas de Missão Crítica corporativos em ecossistema Java e Front-End moderno com Angular 14+. Foco em ambientes bancários regulados de alta complexidade que exigem tolerância zero a falhas, governança estável de infraestrutura ágil e otimização de grandes fluxos transacionais com modelagem ETL e processos BPMN."
+      "tag_tech": "Angular 14+, Java, PHP, Docker, Ansible, Modelagem BPMN, Processos ETL, Sistemas de Missão Crítica.",
+      "descricao": "Atuação especializada na arquitetura e especificação técnica de Sistemas de Missão Crítica corporativos em ecossistema Java e Front-End moderno com Angular 14+. Foco em ambientes de alta confiabilidade com processos BPMN estruturados."
     },
     {
       "empresa": "Consultoria em Soluções",
       "periodo": "2019 - 2025",
       "cargo_ocupado": "Arquiteto de Soluções Autônomo",
-      "tag_tech": "Foco Operacional: Consultoria corporativa sob demanda.",
-      "descricao": "Consultoria dedicada à integração de sistemas legados, infraestrutura em nuvem segura e barramentos de microsserviços customizados para otimização de grandes ecossistemas empresariais e redução de atrito técnico entre departamentos."
+      "tag_tech": "Consultoria corporativa sob demanda, Integração de Sistemas, Infraestrutura Cloud.",
+      "descricao": "Consultoria dedicada à integração de sistemas legados, infraestrutura em nuvem segura e barramentos de microsserviços customizados para otimização de grandes ecossistemas empresariais."
     },
     {
       "empresa": "Globalweb Corp (CAIXA)",
       "periodo": "2023 - 2024",
       "cargo_ocupado": "Arquiteto de Soluções Sênior",
-      "tag_tech": "Foco Operacional: Sistemas SINEB e SIGPD, Java, PHP, DevOps.",
-      "descricao": "Engenheiro titular responsável pela governança técnica, conformidade e arquitetura de ecossistemas bancários governamentais estratégicos e estáveis na Caixa Econômica Federal (SINEB e SIGPD). Liderança técnica das especificações em Java, PHP e ciclo de DevOps."
+      "tag_tech": "Sistemas SINEB e SIGPD, Java, PHP, DevOps, Conformidade Regulatória.",
+      "descricao": "Engenheiro titular responsável pela governança técnica, conformidade e arquitetura de ecossistemas bancários governamentais estratégicos e estáveis na Caixa Econômica Federal."
     },
     {
       "empresa": "TIVIT (CAIXA)",
       "periodo": "2020 - 2022",
       "cargo_ocupado": "Arquiteto de Soluções Sênior",
-      "tag_tech": "Foco Operacional: API-Gateway, Swagger, Docker, Ansible.",
-      "descricao": "Implementação estrutural de camadas robustas de acesso e abstração de dados (API-Gateway) sob especificações rigorosas Swagger, garantindo a integridade transacional, orquestração automatizada e total blindagem operacional de ambientes corporativos críticos."
+      "tag_tech": "API-Gateway, Swagger, Docker, Ansible, Orquestração de Microserviços.",
+      "descricao": "Implementação estrutural de camadas robustas de abstração de dados (API-Gateway) sob especificações rigorosas Swagger, garantindo a integridade transacional e orquestração eficiente de microsserviços."
     }
   ],
   "arquivados": [
@@ -66,7 +66,7 @@
       "empresa": "CTIS Tecnologia",
       "info": "Dev Sênior / DevOps (2014 - 2018)",
       "stack": "Java, DevOps (Docker), PHP, ShellScript, JavaScript, TypeScript, Angular, Node, SQL Server, Oracle.",
-      "desc": "Gestão, sustentação técnica e automação de 29 sistemas legados simultâneos servindo a grandes Ministérios federais públicos (MS, MTur, MDIC e MCTIC), baseados em barramentos de microsserviços seguros."
+      "desc": "Gestão, sustentação técnica e automação de 29 sistemas legados simultâneos servindo a grandes Ministérios federais públicos (MS, MTur, MDIC e MCTIC), baseados em barramentos de integração robustos."
     },
     {
       "empresa": "Xys Interatividade",
@@ -88,9 +88,78 @@
     }
   ],
   "competencias": [
-    "PROCESSOS ETL (MAGENTO)", "ORQUESTRACÃO AI (n8n)", "AGENTES COGNITIVOS / LLMs", 
-    "ENGENHARIA DE PROCESSOS (BPMN)", "SISTEMAS DE MISSÃO CRÍTICA", "CHAMADA DE SVD / TOOL CALLING", 
-    "INTEGRAÇÃO ERPs / PLATAFORMAS", "ANGULAR 14+ / TYPESCRIPT", "PYTHON SPRING BOOT / GOLANG", 
-    "PHP (DOCTRINE) / JAVA", "SHELLSCRIPT / JAVASCRIPT", "INDICADORES GERENCIAIS (KPIs)"
-  ]
+    "ARQUITETURA DE SISTEMAS",
+    "MODELAGEM DE DADOS",
+    "DESENVOLVIMENTO DE SISTEMAS",
+    "INTEGRAÇÃO SOA",
+    "IMPLEMENTAÇÃO DE APIs CORPORATIVAS",
+    "PROCESSOS ETL (MAGENTO)",
+    "ORQUESTRAÇÃO AI (n8n)",
+    "AGENTES COGNITIVOS / LLMs",
+    "ENGENHARIA DE PROCESSOS (BPMN)",
+    "SISTEMAS DE MISSÃO CRÍTICA",
+    "CHAMADA DE SVD / TOOL CALLING",
+    "INTEGRAÇÃO ERPs / PLATAFORMAS",
+    "ANGULAR 14+ / TYPESCRIPT",
+    "PYTHON / SPRING BOOT / GOLANG / RUST",
+    "PHP (DOCTRINE) / JAVA",
+    "SHELLSCRIPT / JAVASCRIPT",
+    "INDICADORES GERENCIAIS (KPIs)"
+  ],
+  "credenciais": [
+    {
+      "nome": "Zend Certified Engineer",
+      "id": "ZEND007837"
+    },
+    {
+      "nome": "Gestão de Projetos Ágeis",
+      "id": "EFTI"
+    },
+    {
+      "nome": "Modelagem de Processos de Negócio (BPMN)",
+      "id": "EFTI"
+    },
+    {
+      "nome": "Levantamento e Especificação de Requisitos",
+      "id": "EFTI"
+    }
+  ],
+  "academico": [
+    {
+      "curso": "Análise e Desenvolvimento de Sistemas",
+      "instituicao": "Cruzeiro do Sul",
+      "ano": "2018"
+    },
+    {
+      "curso": "Desenvolvimento de Jogos Digitais",
+      "instituicao": "Fatep",
+      "ano": "2007"
+    }
+  ],
+  "idiomas": [
+    {
+      "nome": "Português",
+      "nivel": "Nativo"
+    },
+    {
+      "nome": "Inglês",
+      "nivel": "Intermediário / Técnico"
+    },
+    {
+      "nome": "Espanhol",
+      "nivel": "Básico / Técnico"
+    }
+  ],
+  "pontos_fortes": [
+    "Autonomia",
+    "Resiliência",
+    "Inovação",
+    "Auto-Motivação"
+  ],
+  "sistema": {
+    "nacionalidade": "Brasileira",
+    "idioma_principal": "Português (Nativo)",
+    "ingles_corporativo": "Intermediário / Técnico",
+    "espanhol": "Básico / Técnico"
+  }
 }
