@@ -231,7 +231,7 @@
                     <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 transition-colors">
                         🏆 CERTIFICAÇÕES
                     </h2>
-                    <div class="tag-tech p-3 border rounded-xl shadow-inner transition-colors" id="certificationsContainer">
+                    <div class="space-y-2 text-xs" id="certificationsContainer">
                         <!-- Certificações carregadas dinamicamente -->
                     </div>
                 </section>
@@ -242,6 +242,24 @@
                     </h2>
                     <div class="space-y-3 text-xs" id="educationContainer">
                         <!-- Formação carregada dinamicamente -->
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 transition-colors">
+                        🗣️ IDIOMAS
+                    </h2>
+                    <div class="space-y-2 text-xs" id="languagesContainer">
+                        <!-- Idiomas carregados dinamicamente -->
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-xs font-bold text-emerald-400 font-mono uppercase tracking-widest border-b pb-2 mb-3 sec-title border-slate-700/40 transition-colors">
+                        ⭐ PONTOS FORTES
+                    </h2>
+                    <div class="space-y-1.5 text-xs" id="strengthsContainer">
+                        <!-- Pontos fortes carregados dinamicamente -->
                     </div>
                 </section>
 
@@ -310,6 +328,12 @@
 
             // Formação
             loadEducation();
+
+            // Idiomas
+            loadLanguages();
+
+            // Pontos Fortes
+            loadStrengths();
 
             // Informações adicionais
             loadAdditionalInfo();
@@ -381,9 +405,9 @@
             if (cvData.credenciais && cvData.credenciais.length > 0) {
                 cvData.credenciais.forEach(cert => {
                     const certHTML = `
-                        <div>
-                            <p class="text-xs font-bold text-emerald-400 tech-code transition-colors">${cert.nome}</p>
-                            <p class="text-[10px] text-slate-500 font-mono mt-0.5 transition-colors">${cert.id}</p>
+                        <div class="tag-tech p-2 border rounded transition-colors">
+                            <p class="font-bold text-emerald-400 transition-colors">${cert.nome}</p>
+                            <p class="text-slate-500 mt-0.5 transition-colors">ID: ${cert.id}</p>
                         </div>
                     `;
                     container.innerHTML += certHTML;
@@ -409,6 +433,41 @@
             }
         }
 
+        // Carregar idiomas
+        function loadLanguages() {
+            const container = document.getElementById('languagesContainer');
+            container.innerHTML = '';
+
+            if (cvData.idiomas && cvData.idiomas.length > 0) {
+                cvData.idiomas.forEach(lang => {
+                    const langHTML = `
+                        <div class="tag-tech p-2 border rounded transition-colors">
+                            <p class="font-semibold transition-colors">${lang.nome}</p>
+                            <p class="text-slate-500 text-[10px] transition-colors">${lang.nivel}</p>
+                        </div>
+                    `;
+                    container.innerHTML += langHTML;
+                });
+            }
+        }
+
+        // Carregar pontos fortes
+        function loadStrengths() {
+            const container = document.getElementById('strengthsContainer');
+            container.innerHTML = '';
+
+            if (cvData.pontos_fortes && cvData.pontos_fortes.length > 0) {
+                cvData.pontos_fortes.forEach(strength => {
+                    const strengthHTML = `
+                        <div class="tag-tech px-2 py-1.5 border rounded transition-colors">
+                            <p class="font-medium transition-colors">✓ ${strength}</p>
+                        </div>
+                    `;
+                    container.innerHTML += strengthHTML;
+                });
+            }
+        }
+
         // Carregar informações adicionais
         function loadAdditionalInfo() {
             const container = document.getElementById('additionalInfoContainer');
@@ -418,8 +477,7 @@
                 const info = cvData.sistema;
                 const infoItems = [
                     { label: 'Nacionalidade', value: info.nacionalidade },
-                    { label: 'Idioma Principal', value: info.idioma_principal },
-                    { label: 'Inglês Corporativo', value: info.ingles_corporativo }
+                    { label: 'Idioma Principal', value: info.idioma_principal }
                 ];
 
                 infoItems.forEach(item => {
