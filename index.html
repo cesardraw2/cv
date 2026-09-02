@@ -18,22 +18,30 @@
         .tech-code { font-family: 'Roboto Mono', monospace; }
         
         /* --- ANIMAÇÃO DE DIGITAÇÃO AJUSTADA (Previne Quebra de Layout) --- */
-        @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink { from, to { border-color: transparent } 50% { border-color: #10b981 } }
-        
-        @media (min-width: 1024px) {
-              .animate-typing {
-                overflow: hidden;
-                white-space: nowrap;          /* ← nunca quebra linha */
-                animation: typing 3.5s steps(30, end), ...;
-              }
+
+        /* O subtitulo SEMPRE pode quebrar linha.
+           O antigo "white-space: nowrap + overflow: hidden" cortava o texto
+           em telas >= 1024px, onde a coluna do header fica com ~477px. */
+        .animate-typing {
+            white-space: normal;
+            overflow: visible;
+            overflow-wrap: anywhere;
+            border-right: none;
         }
-        @media (max-width: 1023px) {
-            .animate-typing {
-                border-right: none;
-                white-space: normal;
-                word-break: break-word;
-            }
+        /* Cursor da maquina de escrever como elemento proprio (nao clipa o texto) */
+        .animate-typing .type-caret {
+            display: inline-block;
+            width: 0;
+            height: 1em;
+            margin-left: 3px;
+            vertical-align: -0.12em;
+            border-right: 2px solid #10b981;
+            animation: blink .75s step-end infinite;
+        }
+        .animate-typing.typing-done .type-caret { animation: none; border-color: transparent; }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-typing .type-caret { animation: none; }
         }
 
         /* --- CONFIGURAÇÕES DE GRIDS DE FUNDO (TELA) --- */
@@ -134,6 +142,7 @@
             
             h1, .head-name { color: #0f172a !important; font-size: 24pt !important; }
             .animate-typing { border-right: none !important; color: #059669 !important; font-size: 14pt !important; white-space: normal !important; }
+            .animate-typing .type-caret { display: none !important; }
             .sec-title, h2 { color: #0f172a !important; border-bottom: 2px solid #cbd5e1 !important; margin-bottom: 15px !important; }
             h3, .comp-title { color: #0f172a !important; font-size: 12pt !important; }
             p, li, .text-desc, .head-desc { color: #334155 !important; font-size: 10pt !important; }
@@ -294,11 +303,38 @@
             }
         }
 
+        // Efeito de digitação que respeita quebra de linha (substitui a animação CSS de width)
+        let typeTimer = null;
+        function typeText(el, text, speed = 30) {
+            if (!el) return;
+            clearTimeout(typeTimer);
+            el.classList.remove('typing-done');
+            el.textContent = '';
+            const node = document.createTextNode('');
+            const caret = document.createElement('span');
+            caret.className = 'type-caret';
+            caret.setAttribute('aria-hidden', 'true');
+            el.append(node, caret);
+
+            const finish = () => { node.nodeValue = text; el.classList.add('typing-done'); };
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+
+            let i = 0;
+            (function tick() {
+                node.nodeValue = text.slice(0, ++i);
+                if (i < text.length) { typeTimer = setTimeout(tick, speed); }
+                else { el.classList.add('typing-done'); }
+            })();
+
+            // Garante o texto completo ao exportar PDF / imprimir
+            window.addEventListener('beforeprint', finish, { once: true });
+        }
+
         // Preencher página com dados
         function populatePage() {
             // Header
             document.getElementById('fullName').textContent = cvData.nome || 'Nome não carregado';
-            document.getElementById('roleTitle').textContent = cvData.cargo || 'Cargo não carregado';
+            typeText(document.getElementById('roleTitle'), cvData.cargo || 'Cargo não carregado');
             document.getElementById('profileSummary').textContent = cvData.perfil_resumo || 'Perfil não carregado';
 
             // Contatos
